@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV ao Vivo</title>
+    <title>Player TV ao Vivo</title>
     <style>
         /* Estilos gerais */
         body {
@@ -19,7 +19,7 @@
             align-items: center;
             min-height: 100vh;
         }
-        h1, p, nav a, footer {
+        h1, p, footer {
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
         }
 
@@ -56,48 +56,6 @@
             margin: 20px 0;
         }
 
-        .category {
-            margin: 20px 0;
-            width: 90%;
-        }
-
-        .category h2 {
-            margin-bottom: 10px;
-            text-align: center;
-            color: #00ff00;
-        }
-
-        .channels {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .channel {
-            background-color: #333;
-            padding: 10px 20px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 180px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .channel:hover {
-            background-color: #444;
-            transform: scale(1.05);
-        }
-
-        .channel button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            width: 100%;
-        }
-
         #videoContainer {
             width: 90%;
             max-width: 800px;
@@ -106,10 +64,44 @@
             position: relative;
         }
 
+        /* Estilos para o player */
         video {
             width: 100%;
             border: 2px solid #00ff00;
             border-radius: 8px;
+        }
+
+        /* Estilo do menu de seleção */
+        .folder {
+            margin-top: 20px;
+            background-color: #222;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            width: 250px;
+            margin: 10px;
+        }
+
+        .folder:hover {
+            background-color: #333;
+        }
+
+        .folder-content {
+            display: none;
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .file {
+            background-color: #444;
+            padding: 5px;
+            color: #00ff00;
+            margin: 5px 0;
+            cursor: pointer;
         }
 
         footer {
@@ -127,6 +119,9 @@
             font-weight: bold;
         }
     </style>
+
+    <!-- Importando a biblioteca hls.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
     <!-- Banner -->
@@ -140,59 +135,66 @@
         <a href="categorias.html">Tv ao vivo</a>
     </nav>
 
-    <h1>TV ao Vivo</h1>
+    <h1>Player TV ao Vivo</h1>
 
+    <!-- Player -->
     <div id="videoContainer">
         <video id="livePlayer" controls>
-            <source src="" type="application/x-mpegURL">
             Seu navegador não suporta o elemento <code>video</code>.
         </video>
     </div>
 
-    <!-- Categorias de TV -->
-    <div class="category">
-        <h2>GLOBO</h2>
-        <div class="channels" id="globoChannels">
-            <!-- Canais Globo serão carregados aqui -->
+    <!-- Menu de seleção de categorias -->
+    <div>
+        <div class="folder" onclick="toggleFolder('category1')">
+            Canais HD
+        </div>
+        <div id="category1" class="folder-content">
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8')">
+                GLOBO SP HD
+            </div>
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113830.m3u8')">
+                RECORD SP HD
+            </div>
+        </div>
+
+        <div class="folder" onclick="toggleFolder('category2')">
+            Canais FHD
+        </div>
+        <div id="category2" class="folder-content">
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8')">
+                GLOBO SP FHD
+            </div>
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113835.m3u8')">
+                RECORD SP FHD
+            </div>
+        </div>
+
+        <div class="folder" onclick="toggleFolder('category3')">
+            Esportes
+        </div>
+        <div id="category3" class="folder-content">
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113850.m3u8')">
+                ESPORTES FHD
+            </div>
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113860.m3u8')">
+                SPORTS HD
+            </div>
+        </div>
+
+        <div class="folder" onclick="toggleFolder('category4')">
+            Notícias
+        </div>
+        <div id="category4" class="folder-content">
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113870.m3u8')">
+                NOTÍCIAS FHD
+            </div>
+            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113880.m3u8')">
+                NEWS HD
+            </div>
         </div>
     </div>
 
-    <div class="category">
-        <h2>SBT</h2>
-        <div class="channels" id="sbtChannels">
-            <!-- Canais SBT serão carregados aqui -->
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>RECORD</h2>
-        <div class="channels" id="recordChannels">
-            <!-- Canais Record serão carregados aqui -->
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>DOCUMENTÁRIO</h2>
-        <div class="channels" id="documentaryChannels">
-            <!-- Documentários serão carregados aqui -->
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>FILMES</h2>
-        <div class="channels" id="moviesChannels">
-            <!-- Filmes serão carregados aqui -->
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>SÉRIES</h2>
-        <div class="channels" id="seriesChannels">
-            <!-- Séries serão carregados aqui -->
-        </div>
-    </div>
-
-    <!-- Rodapé -->
     <footer>
         <p>Todos os direitos reservados a <strong class="highlight">@BLACKGHOST_B</strong> | 2024/2025</p>
     </footer>
@@ -200,58 +202,28 @@
     <script>
         const livePlayer = document.getElementById("livePlayer");
 
-        // Listas de canais
-        const channels = {
-            globo: [
-                { name: "GLOBO SP HD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8" },
-                { name: "GLOBO SP FHD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8" }
-            ],
-            sbt: [
-                { name: "SBT Nacional", url: "http://link_sbt_nacional.m3u8" },
-                { name: "SBT SP", url: "http://link_sbt_sp.m3u8" }
-            ],
-            record: [
-                { name: "Record RJ", url: "http://link_record_rj.m3u8" },
-                { name: "Record SP", url: "http://link_record_sp.m3u8" }
-            ],
-            documentary: [
-                { name: "Discovery Channel", url: "http://link_discovery.m3u8" },
-                { name: "National Geographic", url: "http://link_natgeo.m3u8" }
-            ],
-            movies: [
-                { name: "CineMax", url: "http://link_cinemax.m3u8" },
-                { name: "HBO", url: "http://link_hbo.m3u8" }
-            ],
-            series: [
-                { name: "Friends Channel", url: "http://link_friends.m3u8" },
-                { name: "Breaking Bad Channel", url: "http://link_bb.m3u8" }
-            ]
-        };
-
-        // Função para carregar os canais em uma categoria
-        function loadChannels(category, containerId) {
-            const container = document.getElementById(containerId);
-            channels[category].forEach(channel => {
-                const div = document.createElement("div");
-                div.className = "channel";
-                const button = document.createElement("button");
-                button.textContent = channel.name;
-                button.onclick = function() {
-                    livePlayer.src = channel.url;
-                    livePlayer.play();
-                };
-                div.appendChild(button);
-                container.appendChild(div);
-            });
+        // Função para alternar a visibilidade das categorias
+        function toggleFolder(categoryId) {
+            const folderContent = document.getElementById(categoryId);
+            folderContent.style.display = (folderContent.style.display === 'none' || folderContent.style.display === '') ? 'block' : 'none';
         }
 
-        // Carregar canais de todas as categorias
-        loadChannels("globo", "globoChannels");
-        loadChannels("sbt", "sbtChannels");
-        loadChannels("record", "recordChannels");
-        loadChannels("documentary", "documentaryChannels");
-        loadChannels("movies", "moviesChannels");
-        loadChannels("series", "seriesChannels");
+        // Função para carregar o canal no player
+        function loadChannel(url) {
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(livePlayer);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    livePlayer.play();
+                });
+            } else if (livePlayer.canPlayType('application/vnd.apple.mpegurl')) {
+                livePlayer.src = url;
+                livePlayer.play();
+            } else {
+                alert("Seu navegador não suporta este formato de vídeo.");
+            }
+        }
     </script>
 </body>
 </html>
