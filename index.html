@@ -11,6 +11,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            margin-top: 70px; /* Espaço para o menu fixo */
         }
         img {
             max-width: 100%;
@@ -20,11 +21,11 @@
         a {
             color: #00ff00;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px; /* Tamanho do botão reduzido */
             display: inline-block;
             margin-top: 20px;
-            padding: 10px;
-            border: 2px solid #00ff00;
+            padding: 8px 15px; /* Botões mais compactos */
+            border: 1px solid #00ff00; /* Borda mais fina */
             border-radius: 5px;
         }
         a:hover {
@@ -48,12 +49,13 @@
             width: 100%;
         }
         .scroll-log p {
-            animation: scroll 10s linear infinite;
+            animation: scroll 5s ease-in-out infinite alternate;
             margin: 0;
         }
         @keyframes scroll {
             0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            50% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         /* Menu de navegação */
         nav {
@@ -63,6 +65,8 @@
             top: 0;
             width: 100%;
             z-index: 10;
+            text-align: center;
+            border-bottom: 1px solid #00ff00; /* Traço mais fino */
         }
         nav a {
             margin: 0 15px;
@@ -90,10 +94,7 @@
     
     <!-- Scrollslog -->
     <div class="scroll-log">
-        <p>Mensagem 1: Em breve mais atualizações para os nossos usuários!</p>
-    </div>
-    <div class="scroll-log">
-        <p>Mensagem 2: Aguardem grandes novidades para a plataforma BLACKGHOST!</p>
+        <p>Mensagem: Em breve mais atualizações para os nossos usuários!</p>
     </div>
     
     <footer>
