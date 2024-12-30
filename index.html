@@ -5,31 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLACKGHOST</title>
     <style>
+        /* Estilos gerais */
         body {
-            background-color: black;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://media3.giphy.com/media/4fCFRodZ5tJu0/giphy.gif?cid=6c09b952fnrajb7idqisg7ilhuff02fa1irkdr54d23mwe8k&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g') 
+                        no-repeat center center fixed;
+            background-size: cover;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
-            margin-top: 70px; /* Espaço para o menu fixo */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 20px auto;
+        h1, p, nav a, footer {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
         }
-        a {
-            color: #00ff00;
+        /* Botão de estilo */
+        .button-2 {
+            color: #ffffff;
             text-decoration: none;
-            font-size: 18px; /* Tamanho do botão reduzido */
+            font-size: 18px;
             display: inline-block;
             margin-top: 20px;
-            padding: 8px 15px; /* Botões mais compactos */
-            border: 1px solid #00ff00; /* Borda mais fina */
-            border-radius: 5px;
+            padding: 10px 25px;
+            border: 2px solid #ffffff;
+            border-radius: 25px;
+            background-color: transparent;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        a:hover {
-            background-color: #00ff00;
+        .button-2:hover {
+            background-color: #ffffff;
             color: black;
         }
         footer {
@@ -41,7 +51,6 @@
             font-size: 18px;
             color: #00ff00;
             padding: 10px;
-            background-color: black;
             margin: 20px auto;
             white-space: nowrap;
             overflow: hidden;
@@ -65,11 +74,16 @@
             top: 0;
             width: 100%;
             z-index: 10;
-            text-align: left; /* Alinha o texto à esquerda */
-            border-bottom: 1px solid #00ff00; /* Traço mais fino */
+            text-align: left;
+            width: 100%;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center; /* Alinha os links ao centro */
+            width: auto;
         }
         nav a {
-            margin: 0 15px;
+            margin: 0 10px;
             color: #00ff00;
             font-size: 18px;
             text-decoration: none;
@@ -77,37 +91,27 @@
         nav a:hover {
             text-decoration: underline;
         }
-        /* Centralizando o menu */
-        nav {
-            display: flex;
-            justify-content: left;
-            align-items: center;
-        }
-        nav a {
-            margin: 0 10px; /* Espaçamento mais próximo entre os botões */
-        }
-        /* Centralização do traço abaixo dos links */
-        nav {
-            display: flex;
-            justify-content: center;
-            border-bottom: 1px solid #00ff00; /* Linha abaixo do menu */
-            padding-bottom: 10px;
+        .nav-container {
+            border-bottom: 2px solid #00ff00;
+            width: auto;
+            padding-bottom: 5px;
         }
     </style>
 </head>
 <body>
     <!-- Menu de navegação -->
     <nav>
-        <a href="#home">Home</a>
-        <a href="#repositorio">Repositório</a>
-        <a href="#addons">Addons</a>
-        <a href="#contato">Contato</a> <!-- Novo botão de Contato -->
+        <div class="nav-container">
+            <a href="#repositorio">Repositório</a>
+            <a href="#addons">Addons</a>
+        </div>
     </nav>
     
     <h1>@BLACKGHOST_B</h1>
     <p>Estamos em desenvolvimento, aguarde novidades!</p>
-    <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/file-2gLzqrhjyLPpssoxtBUvTY.png" alt="Imagem de desenvolvimento">
-    <a href="https://t.me/BLACKGHOST_B" target="_blank">TELEGRAM</a>
+    
+    <!-- Botões -->
+    <a href="https://t.me/BLACKGHOST_B" target="_blank" class="button-2">TELEGRAM</a>
     
     <!-- Scrollslog -->
     <div class="scroll-log">
