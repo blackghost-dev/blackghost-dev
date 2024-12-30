@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV ao Vivo</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            background-color: black; /* Fundo preto */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1, p, nav a, footer {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
+        }
+
+        /* Banner com imagem ajustada */
+        .banner {
+            width: 100%;
+            height: 150px; /* Altura do banner */
+            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/20241230_055524_0000.png');
+            background-size: cover; /* Preenche o banner cortando partes, se necessário */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Evita repetição da imagem */
+        }
+
+        nav {
+            background-color: #000;
+            padding: 10px;
+            width: 100%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .category {
+            margin: 20px 0;
+            width: 90%;
+        }
+
+        .category h2 {
+            margin-bottom: 10px;
+            text-align: center;
+            color: #00ff00;
+        }
+
+        .channels {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .channel {
+            background-color: #333;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 180px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .channel:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+
+        .channel button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #videoContainer {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: black;
+            position: relative;
+        }
+
+        video {
+            width: 100%;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 10px 0;
+            background-color: #111;
+            color: #00ff00;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer .highlight {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner"></div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="contato.html">Contato</a>
+        <a href="repositorio.html">Repositório</a>
+        <a href="player.html">Player</a>
+        <a href="categorias.html">Tv ao vivo</a>
+    </nav>
+
+    <h1>TV ao Vivo</h1>
+
+    <div id="videoContainer">
+        <video id="livePlayer" controls>
+            <source src="" type="application/x-mpegURL">
+            Seu navegador não suporta o elemento <code>video</code>.
+        </video>
+    </div>
+
+    <!-- Categorias de TV -->
+    <div class="category">
+        <h2>GLOBO</h2>
+        <div class="channels" id="globoChannels">
+            <!-- Canais Globo serão carregados aqui -->
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>SBT</h2>
+        <div class="channels" id="sbtChannels">
+            <!-- Canais SBT serão carregados aqui -->
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>RECORD</h2>
+        <div class="channels" id="recordChannels">
+            <!-- Canais Record serão carregados aqui -->
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>DOCUMENTÁRIO</h2>
+        <div class="channels" id="documentaryChannels">
+            <!-- Documentários serão carregados aqui -->
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>FILMES</h2>
+        <div class="channels" id="moviesChannels">
+            <!-- Filmes serão carregados aqui -->
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>SÉRIES</h2>
+        <div class="channels" id="seriesChannels">
+            <!-- Séries serão carregados aqui -->
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Todos os direitos reservados a <strong class="highlight">@BLACKGHOST_B</strong> | 2024/2025</p>
+    </footer>
+
+    <script>
+        const livePlayer = document.getElementById("livePlayer");
+
+        // Listas de canais
+        const channels = {
+            globo: [
+                { name: "Globo RJ", url: "http://link_globo_rj.m3u8" },
+                { name: "Globo SP", url: "http://link_globo_sp.m3u8" }
+            ],
+            sbt: [
+                { name: "SBT Nacional", url: "http://link_sbt_nacional.m3u8" },
+                { name: "SBT SP", url: "http://link_sbt_sp.m3u8" }
+            ],
+            record: [
+                { name: "Record RJ", url: "http://link_record_rj.m3u8" },
+                { name: "Record SP", url: "http://link_record_sp.m3u8" }
+            ],
+            documentary: [
+                { name: "Discovery Channel", url: "http://link_discovery.m3u8" },
+                { name: "National Geographic", url: "http://link_natgeo.m3u8" }
+            ],
+            movies: [
+                { name: "CineMax", url: "http://link_cinemax.m3u8" },
+                { name: "HBO", url: "http://link_hbo.m3u8" }
+            ],
+            series: [
+                { name: "Friends Channel", url: "http://link_friends.m3u8" },
+                { name: "Breaking Bad Channel", url: "http://link_bb.m3u8" }
+            ]
+        };
+
+        // Função para carregar os canais em uma categoria
+        function loadChannels(category, containerId) {
+            const container = document.getElementById(containerId);
+            channels[category].forEach(channel => {
+                const div = document.createElement("div");
+                div.className = "channel";
+                const button = document.createElement("button");
+                button.textContent = channel.name;
+                button.onclick = function() {
+                    livePlayer.src = channel.url;
+                    livePlayer.play();
+                };
+                div.appendChild(button);
+                container.appendChild(div);
+            });
+        }
+
+        // Carregar canais de todas as categorias
+        loadChannels("globo", "globoChannels");
+        loadChannels("sbt", "sbtChannels");
+        loadChannels("record", "recordChannels");
+        loadChannels("documentary", "documentaryChannels");
+        loadChannels("movies", "moviesChannels");
+        loadChannels("series", "seriesChannels");
+    </script>
+</body>
+</html>
