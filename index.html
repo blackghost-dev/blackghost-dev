@@ -77,6 +77,22 @@
         nav a:hover {
             text-decoration: underline;
         }
+        /* Centralizando o menu */
+        nav {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+        nav a {
+            margin: 0 10px; /* Espaçamento mais próximo entre os botões */
+        }
+        /* Centralização do traço abaixo dos links */
+        nav {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #00ff00; /* Linha abaixo do menu */
+            padding-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -85,6 +101,7 @@
         <a href="#home">Home</a>
         <a href="#repositorio">Repositório</a>
         <a href="#addons">Addons</a>
+        <a href="#contato">Contato</a> <!-- Novo botão de Contato -->
     </nav>
     
     <h1>@BLACKGHOST_B</h1>
