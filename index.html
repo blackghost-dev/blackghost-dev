@@ -26,7 +26,7 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
         }
         /* Botão de estilo */
-        .button-2, .button-3 {
+        .button-2 {
             color: #ffffff;
             text-decoration: none;
             font-size: 18px;
@@ -38,7 +38,7 @@
             background-color: transparent;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .button-2:hover, .button-3:hover {
+        .button-2:hover {
             background-color: #ffffff;
             color: black;
         }
@@ -98,27 +98,24 @@
         }
     </style>
     <script>
-        // Função em JavaScript para exibir uma mensagem
-        function mostrarMensagem() {
+        // Função em JavaScript para exibir uma mensagem automaticamente
+        window.onload = function() {
             alert('Bem-vindo ao site @BLACKGHOST_B! Fique ligado para mais novidades.');
-        }
+        };
     </script>
 </head>
 <body>
     <!-- Menu de navegação -->
     <nav>
-    <div class="nav-container">
-        <a href="index.html">Home</a>
-        <a href="contato.html">Contato</a>
-    </div>
-</nav>
+        <div class="nav-container">
+            <a href="index.html">Home</a>
+            <a href="contato.html">Contato</a>
+        </div>
+    </nav>
     
     <h1>@BLACKGHOST_B</h1>
     <p>Estamos em desenvolvimento, aguarde novidades!</p>
     
-    <!-- Botão interativo -->
-    <button class="button-3" onclick="mostrarMensagem()">Clique aqui</button>
-      
     <!-- Scrollslog -->
     <div class="scroll-log">
         <p>Em breve mais atualizações para os nossos usuários!</p>
