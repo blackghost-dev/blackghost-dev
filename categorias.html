@@ -7,7 +7,7 @@
     <style>
         /* Estilos gerais */
         body {
-            background-color: black; /* Fundo preto */
+            background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -20,19 +20,18 @@
             min-height: 100vh;
         }
         h1, p, nav a, footer {
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
-        }
-        /* Banner com imagem ajustada */
-        .banner {
-            width: 100%;
-            height: 150px; /* Altura do banner */
-            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/20241230_055524_0000.png');
-            background-size: cover; /* Preenche o banner cortando partes, se necessário */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita repetição da imagem */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
-        /* Menu de navegação */
+        .banner {
+            width: 100%;
+            height: 150px;
+            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/20241230_055524_0000.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
         nav {
             background-color: #000;
             padding: 10px;
@@ -41,9 +40,9 @@
         }
         .nav-container {
             display: flex;
-            justify-content: center; /* Alinha os links ao centro */
+            justify-content: center;
         }
-        
+
         footer {
             margin-top: auto;
             padding: 10px 0;
@@ -58,28 +57,30 @@
             color: #ff0000;
             font-weight: bold;
         }
-        
+
         nav a {
             margin: 0 10px;
             color: #00ff00;
             font-size: 18px;
             text-decoration: none;
         }
+
         nav a:hover {
             text-decoration: underline;
         }
 
         #videoContainer {
             position: relative;
-            width: 100%; /* Aumenta o tamanho para 90% da largura da tela */
-            max-width: 800px; /* Limita o tamanho máximo */
+            width: 100%;
+            max-width: 800px;
             margin: 20px 0;
-            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Screenshot_20241230-162619%7E2.png'); /* Link da imagem hospedada no GitHub */
-            background-size: cover; /* Faz a imagem cobrir todo o contêiner */
-            background-position: center; /* Centraliza a imagem */
-            padding-bottom: 56.25%; /* Mantém proporção 16:9 */
+            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Screenshot_20241230-162619%7E2.png');
+            background-size: cover;
+            background-position: center;
+            padding-bottom: 56.25%;
             position: relative;
         }
+
         #videoPlayer {
             width: 100%;
             height: 100%;
@@ -87,18 +88,20 @@
             top: 0;
             left: 0;
         }
+
         #controls {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente para os controles */
+            background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 5px 10px;
-            height: 30px; /* Diminuindo a altura da barra */
+            height: 30px;
         }
+
         #playPauseButton, #stopButton, #fullscreenButton {
             color: white;
             background: none;
@@ -107,11 +110,13 @@
             cursor: pointer;
             padding: 5px 10px;
         }
+
         #progressBar {
             flex-grow: 1;
             margin: 0 10px;
-            height: 5px; /* Diminuindo a altura da barra de progresso */
+            height: 5px;
         }
+
         #episodeList {
             margin: 10px auto;
             padding: 0;
@@ -119,34 +124,36 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; /* Adiciona um espaçamento entre os itens */
+            gap: 10px;
         }
+
         #episodeList li {
             background-color: #333;
             padding: 10px 20px;
             text-align: center;
             border-radius: 8px;
             cursor: pointer;
-            width: 180px; /* Diminuindo a largura */
-            transition: background-color 0.3s, transform 0.3s; /* Efeito suave */
+            width: 180px;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
         #episodeList li:hover {
             background-color: #444;
-            transform: scale(1.05); /* Aumenta um pouco o tamanho ao passar o mouse */
+            transform: scale(1.05);
         }
+
         #episodeList button {
             background: none;
             border: none;
             color: white;
-            font-size: 14px; /* Ajusta o tamanho da fonte */
+            font-size: 14px;
             cursor: pointer;
             padding: 0;
-            width: 100%; /* Faz o botão ocupar toda a largura do item */
+            width: 100%;
         }
 
-        /* Estilo para destacar o texto em verde */
         .highlight {
-            color: #00ff00; /* Cor verde */
+            color: #00ff00;
         }
     </style>
 </head>
@@ -168,8 +175,7 @@
     <h1>Player de Vídeo</h1>
 
     <div id="videoContainer">
-        <video id="videoPlayer" preload="metadata">
-            <source src="" type="video/mp4">
+        <video id="videoPlayer" preload="metadata" controls>
             Seu navegador não suporta o elemento <code>video</code>.
         </video>
         <div id="controls">
@@ -188,6 +194,9 @@
     <footer>
         <p>Todos os direitos reservados a <strong class="highlight">@BLACKGHOST_B</strong> | 2024/2025</p>
     </footer>
+
+    <!-- Adicionando HLS.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <script>
         const video = document.getElementById("videoPlayer");
@@ -215,9 +224,19 @@
                 const button = document.createElement("button");
                 button.textContent = episode.title;
                 button.onclick = function() {
-                    video.src = episode.link; // Define o link do episódio
-                    video.play(); // Reproduz o vídeo
-                    playPauseButton.textContent = "⏸️"; // Alterar o botão para Pause
+                    if (Hls.isSupported()) {
+                        const hls = new Hls();
+                        hls.loadSource(episode.link);
+                        hls.attachMedia(video);
+                        hls.on(Hls.Events.MANIFEST_LOADED, function() {
+                            video.play();
+                            playPauseButton.textContent = "⏸️";
+                        });
+                    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = episode.link;
+                        video.play();
+                        playPauseButton.textContent = "⏸️";
+                    }
                 };
                 li.appendChild(button);
                 episodeList.appendChild(li);
@@ -237,37 +256,28 @@
 
         // Função de Stop (parar)
         stopButton.addEventListener("click", function() {
-            video.pause(); // Pausa o vídeo
-            video.currentTime = 0; // Reseta o tempo de reprodução para o início
-            playPauseButton.textContent = "▶️"; // Altera o botão de Play/Pause para Play
+            video.pause();
+            video.currentTime = 0;
+            playPauseButton.textContent = "▶️";
         });
 
-        // Atualizar a barra de progresso
-        video.addEventListener("timeupdate", function() {
-            const value = (video.currentTime / video.duration) * 100;
-            progressBar.value = value;
-        });
-
-        // Buscar o progresso do vídeo
         progressBar.addEventListener("input", function() {
             const value = progressBar.value * video.duration / 100;
             video.currentTime = value;
         });
 
-        // Função de Fullscreen
         fullscreenButton.addEventListener("click", function() {
             if (video.requestFullscreen) {
                 video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) { // Firefox
+            } else if (video.mozRequestFullScreen) {
                 video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // Chrome, Safari e Opera
+            } else if (video.webkitRequestFullscreen) {
                 video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
+            } else if (video.msRequestFullscreen) {
                 video.msRequestFullscreen();
             }
         });
 
-        // Carregar os episódios na lista
         window.onload = loadEpisodes;
     </script>
 </body>
