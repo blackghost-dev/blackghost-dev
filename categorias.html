@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player TV ao Vivo</title>
+    <title>BLACKGHOST-dev [VIP]</title>
     <style>
         /* Estilos gerais */
         body {
@@ -19,10 +19,9 @@
             align-items: center;
             min-height: 100vh;
         }
-        h1, p, footer {
+        h1, p, nav a, footer {
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
         }
-
         /* Banner com imagem ajustada */
         .banner {
             width: 100%;
@@ -33,77 +32,18 @@
             background-repeat: no-repeat; /* Evita repetição da imagem */
         }
 
+        /* Menu de navegação */
         nav {
             background-color: #000;
             padding: 10px;
             width: 100%;
             z-index: 10;
+        }
+        .nav-container {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Alinha os links ao centro */
         }
-
-        nav a {
-            margin: 0 10px;
-            color: #00ff00;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            margin: 20px 0;
-        }
-
-        #videoContainer {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: black;
-            position: relative;
-        }
-
-        /* Estilos para o player */
-        video {
-            width: 100%;
-            border: 2px solid #00ff00;
-            border-radius: 8px;
-        }
-
-        /* Estilo do menu de seleção */
-        .folder {
-            margin-top: 20px;
-            background-color: #222;
-            color: #00ff00;
-            border: 2px solid #00ff00;
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: inline-block;
-            width: 250px;
-            margin: 10px;
-        }
-
-        .folder:hover {
-            background-color: #333;
-        }
-
-        .folder-content {
-            display: none;
-            margin-top: 10px;
-            padding-left: 20px;
-        }
-
-        .file {
-            background-color: #444;
-            padding: 5px;
-            color: #00ff00;
-            margin: 5px 0;
-            cursor: pointer;
-        }
-
+        
         footer {
             margin-top: auto;
             padding: 10px 0;
@@ -118,112 +58,217 @@
             color: #ff0000;
             font-weight: bold;
         }
-    </style>
+        
+        nav a {
+            margin: 0 10px;
+            color: #00ff00;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-    <!-- Importando a biblioteca hls.js -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+        #videoContainer {
+            position: relative;
+            width: 100%; /* Aumenta o tamanho para 90% da largura da tela */
+            max-width: 800px; /* Limita o tamanho máximo */
+            margin: 20px 0;
+            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Screenshot_20241230-162619%7E2.png'); /* Link da imagem hospedada no GitHub */
+            background-size: cover; /* Faz a imagem cobrir todo o contêiner */
+            background-position: center; /* Centraliza a imagem */
+            padding-bottom: 56.25%; /* Mantém proporção 16:9 */
+            position: relative;
+        }
+        #videoPlayer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente para os controles */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 10px;
+            height: 30px; /* Diminuindo a altura da barra */
+        }
+        #playPauseButton, #stopButton, #fullscreenButton {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        #progressBar {
+            flex-grow: 1;
+            margin: 0 10px;
+            height: 5px; /* Diminuindo a altura da barra de progresso */
+        }
+        #episodeList {
+            margin: 10px auto;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px; /* Adiciona um espaçamento entre os itens */
+        }
+        #episodeList li {
+            background-color: #333;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 180px; /* Diminuindo a largura */
+            transition: background-color 0.3s, transform 0.3s; /* Efeito suave */
+        }
+        #episodeList li:hover {
+            background-color: #444;
+            transform: scale(1.05); /* Aumenta um pouco o tamanho ao passar o mouse */
+        }
+        #episodeList button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px; /* Ajusta o tamanho da fonte */
+            cursor: pointer;
+            padding: 0;
+            width: 100%; /* Faz o botão ocupar toda a largura do item */
+        }
+
+        /* Estilo para destacar o texto em verde */
+        .highlight {
+            color: #00ff00; /* Cor verde */
+        }
+    </style>
 </head>
 <body>
-    <!-- Banner -->
+    <!-- Banner com imagem ajustada -->
     <div class="banner"></div>
 
+    <!-- Menu de navegação -->
     <nav>
-        <a href="index.html">Home</a>
-        <a href="contato.html">Contato</a>
-        <a href="repositorio.html">Repositório</a>
-        <a href="player.html">Player</a>
-        <a href="categorias.html">Tv ao vivo</a>
+        <div class="nav-container">
+            <a href="index.html">Home</a>
+            <a href="contato.html">Contato</a>
+            <a href="repositorio.html">Repositório</a>
+            <a href="player.html">Player</a>
+            <a href="categorias.html">Tv ao vivo</a>
+        </div>
     </nav>
 
-    <h1>Player TV ao Vivo</h1>
+    <h1>Player de Vídeo</h1>
 
-    <!-- Player -->
     <div id="videoContainer">
-        <video id="livePlayer" controls>
+        <video id="videoPlayer" preload="metadata">
+            <source src="" type="video/mp4">
             Seu navegador não suporta o elemento <code>video</code>.
         </video>
-    </div>
-
-    <!-- Menu de seleção de categorias -->
-    <div>
-        <div class="folder" onclick="toggleFolder('category1')">
-            Canais HD
-        </div>
-        <div id="category1" class="folder-content">
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8')">
-                GLOBO SP HD
-            </div>
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113830.m3u8')">
-                RECORD SP HD
-            </div>
-        </div>
-
-        <div class="folder" onclick="toggleFolder('category2')">
-            Canais FHD
-        </div>
-        <div id="category2" class="folder-content">
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8')">
-                GLOBO SP FHD
-            </div>
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113835.m3u8')">
-                RECORD SP FHD
-            </div>
-        </div>
-
-        <div class="folder" onclick="toggleFolder('category3')">
-            Esportes
-        </div>
-        <div id="category3" class="folder-content">
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113850.m3u8')">
-                ESPORTES FHD
-            </div>
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113860.m3u8')">
-                SPORTS HD
-            </div>
-        </div>
-
-        <div class="folder" onclick="toggleFolder('category4')">
-            Notícias
-        </div>
-        <div id="category4" class="folder-content">
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113870.m3u8')">
-                NOTÍCIAS FHD
-            </div>
-            <div class="file" onclick="loadChannel('http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113880.m3u8')">
-                NEWS HD
-            </div>
+        <div id="controls">
+            <button id="playPauseButton">▶️</button>
+            <input id="progressBar" type="range" value="0" max="100" step="0.1">
+            <button id="stopButton">⏹️</button>
+            <button id="fullscreenButton">🖥️</button>
         </div>
     </div>
+
+    <h2>Escolha um Episódio</h2>
+    <ul id="episodeList">
+        <!-- Episódios serão carregados dinamicamente aqui -->
+    </ul>
 
     <footer>
         <p>Todos os direitos reservados a <strong class="highlight">@BLACKGHOST_B</strong> | 2024/2025</p>
     </footer>
 
     <script>
-        const livePlayer = document.getElementById("livePlayer");
+        const video = document.getElementById("videoPlayer");
+        const playPauseButton = document.getElementById("playPauseButton");
+        const stopButton = document.getElementById("stopButton");
+        const progressBar = document.getElementById("progressBar");
+        const fullscreenButton = document.getElementById("fullscreenButton");
+        const episodeList = document.getElementById("episodeList");
 
-        // Função para alternar a visibilidade das categorias
-        function toggleFolder(categoryId) {
-            const folderContent = document.getElementById(categoryId);
-            folderContent.style.display = (folderContent.style.display === 'none' || folderContent.style.display === '') ? 'block' : 'none';
+        const episodes = [
+            {title: "GLOBO SP HD", link: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8"},
+            {title: "Os Contatinhos de Lauren S01 E02", link: "http://gol7990.com:80/series/vini105/884512ab/567192.mp4"},
+            {title: "Os Contatinhos de Lauren S01 E03", link: "http://gol7990.com:80/series/vini105/884512ab/567193.mp4"},
+            {title: "Os Contatinhos de Lauren S01 E04", link: "http://gol7990.com:80/series/vini105/884512ab/567194.mp4"},
+            {title: "Os Contatinhos de Lauren S01 E05", link: "http://gol7990.com:80/series/vini105/884512ab/567195.mp4"},
+            {title: "Os Contatinhos de Lauren S01 E06", link: "http://gol7990.com:80/series/vini105/884512ab/567196.mp4"},
+            {title: "Os Contatinhos de Lauren S01 E07", link: "http://gol7990.com:80/series/vini105/884512ab/567197.mp4"},
+            {title: "Os Contatinhos de Lauren S01 E08", link: "http://gol7990.com:80/series/vini105/884512ab/567198.mp4"}
+        ];
+
+        // Função para carregar os episódios na lista
+        function loadEpisodes() {
+            episodes.forEach(episode => {
+                const li = document.createElement("li");
+                const button = document.createElement("button");
+                button.textContent = episode.title;
+                button.onclick = function() {
+                    video.src = episode.link; // Define o link do episódio
+                    video.play(); // Reproduz o vídeo
+                    playPauseButton.textContent = "⏸️"; // Alterar o botão para Pause
+                };
+                li.appendChild(button);
+                episodeList.appendChild(li);
+            });
         }
 
-        // Função para carregar o canal no player
-        function loadChannel(url) {
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(url);
-                hls.attachMedia(livePlayer);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    livePlayer.play();
-                });
-            } else if (livePlayer.canPlayType('application/vnd.apple.mpegurl')) {
-                livePlayer.src = url;
-                livePlayer.play();
+        // Função de Play/Pause
+        playPauseButton.addEventListener("click", function() {
+            if (video.paused) {
+                video.play();
+                playPauseButton.textContent = "⏸️";
             } else {
-                alert("Seu navegador não suporta este formato de vídeo.");
+                video.pause();
+                playPauseButton.textContent = "▶️";
             }
-        }
+        });
+
+        // Função de Stop (parar)
+        stopButton.addEventListener("click", function() {
+            video.pause(); // Pausa o vídeo
+            video.currentTime = 0; // Reseta o tempo de reprodução para o início
+            playPauseButton.textContent = "▶️"; // Altera o botão de Play/Pause para Play
+        });
+
+        // Atualizar a barra de progresso
+        video.addEventListener("timeupdate", function() {
+            const value = (video.currentTime / video.duration) * 100;
+            progressBar.value = value;
+        });
+
+        // Buscar o progresso do vídeo
+        progressBar.addEventListener("input", function() {
+            const value = progressBar.value * video.duration / 100;
+            video.currentTime = value;
+        });
+
+        // Função de Fullscreen
+        fullscreenButton.addEventListener("click", function() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari e Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        });
+
+        // Carregar os episódios na lista
+        window.onload = loadEpisodes;
     </script>
 </body>
 </html>
