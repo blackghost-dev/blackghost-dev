@@ -36,13 +36,66 @@
             font-size: 14px;
             color: #808080;
         }
+        .scroll-log {
+            font-size: 18px;
+            color: #00ff00;
+            padding: 10px;
+            background-color: black;
+            margin: 20px auto;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .scroll-log p {
+            animation: scroll 10s linear infinite;
+            margin: 0;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        /* Menu de navegação */
+        nav {
+            background-color: #000;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #00ff00;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <!-- Menu de navegação -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#repositorio">Repositório</a>
+        <a href="#addons">Addons</a>
+    </nav>
+    
     <h1>@BLACKGHOST_B</h1>
     <p>Estamos em desenvolvimento, aguarde novidades!</p>
     <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/file-2gLzqrhjyLPpssoxtBUvTY.png" alt="Imagem de desenvolvimento">
-    <a href="https://t.me/@BLACKGHOST_B" target="_blank">TELEGRAM</a>
+    <a href="https://t.me/BLACKGHOST_B" target="_blank">TELEGRAM</a>
+    
+    <!-- Scrollslog -->
+    <div class="scroll-log">
+        <p>Mensagem 1: Em breve mais atualizações para os nossos usuários!</p>
+    </div>
+    <div class="scroll-log">
+        <p>Mensagem 2: Aguardem grandes novidades para a plataforma BLACKGHOST!</p>
+    </div>
+    
     <footer>
         Todos os direitos reservados a @BLACKGHOST_B | 2024/2025
     </footer>
