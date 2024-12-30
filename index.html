@@ -7,10 +7,7 @@
     <style>
         /* Estilos gerais */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://media3.giphy.com/media/4fCFRodZ5tJu0/giphy.gif?cid=6c09b952fnrajb7idqisg7ilhuff02fa1irkdr54d23mwe8k&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g') 
-                        no-repeat center center fixed;
-            background-size: cover;
+            background-color: black; /* Fundo preto */
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -98,9 +95,12 @@
         }
     </style>
     <script>
-        // Função em JavaScript para exibir uma mensagem automaticamente
+        // Função para exibir a mensagem apenas na primeira visita
         window.onload = function() {
-            alert('Bem-vindo ao site @BLACKGHOST_B! Fique ligado para mais novidades.');
+            if (!localStorage.getItem('mensagemExibida')) {
+                alert('Bem-vindo ao site @BLACKGHOST_B! Fique ligado para mais novidades.');
+                localStorage.setItem('mensagemExibida', 'true');
+            }
         };
     </script>
 </head>
