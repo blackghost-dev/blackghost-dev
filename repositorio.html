@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLACKGHOST-dev - REPOSITÓRIO</title>
     <style>
-        /* Estilos gerais */
+        /* Estilo geral */
         body {
-            background-color: black; /* Fundo preto */
+            background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -19,21 +19,15 @@
             align-items: center;
             min-height: 100vh;
         }
-        h1, p, nav a, footer {
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
-        }
-        .highlight {
-            color: #00ff00;
-            font-weight: bold;
-        }
-        /* Banner com imagem ajustada */
+
+        /* Banner (Logo) */
         .banner {
             width: 100%;
-            height: 150px; /* Altura do banner */
+            height: 150px;
             background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/20241230_055524_0000.png');
-            background-size: cover; /* Preenche o banner cortando partes, se necessário */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita repetição da imagem */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Menu de navegação */
@@ -63,12 +57,13 @@
         nav a:hover {
             color: #007f00;
         }
-        /* Conteúdo */
-        .content {
-            margin-top: 20px;
-            text-align: left;
-            max-width: 800px;
+
+        /* Conteúdo principal */
+        h1, p {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
+
+        /* Rodapé */
         footer {
             margin-top: auto;
             padding: 10px 0;
@@ -83,10 +78,32 @@
             color: #ff0000;
             font-weight: bold;
         }
+
+        /* Estilo para o conteúdo */
+        .content-container {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        a.highlight {
+            color: #00ff00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a.highlight:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <!-- Banner com imagem ajustada -->
+    <!-- Banner (Logo) -->
     <div class="banner"></div>
 
     <!-- Menu de navegação -->
@@ -100,7 +117,8 @@
         </div>
     </nav>
     
-    <div class="content">
+    <!-- Conteúdo Principal -->
+    <div class="content-container">
         <h1><span class="highlight">REPOSITÓRIO - BLACKGHOST</span></h1>
         <p><strong>Versão Atual:</strong> <span class="highlight">2.0</span></p>
 
@@ -121,7 +139,8 @@
         </ol>
         <p style="text-align: center; font-style: italic;">Agora é só aproveitar o conteúdo disponível!</p>
     </div>
-    
+
+    <!-- Rodapé -->
     <footer>
         <p>Todos os direitos reservados a <strong class="highlight">@BLACKGHOST_B</strong> | 2024/2025</p>
     </footer>

@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLACKGHOST-dev Contato</title>
+    <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
     <style>
+        /* Estilo geral */
         body {
-            background-color: black; /* Fundo preto */
+            background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -18,24 +20,17 @@
             align-items: center;
             min-height: 100vh;
         }
-        h1, p, nav a, footer {
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-        footer {
-            margin-top: auto;
-            padding: 10px 0;
-            background-color: #111;
-            color: #00ff00;
-            font-size: 14px;
+
+        /* Banner (Logo) */
+        .banner {
             width: 100%;
-            text-align: center;
+            height: 150px;
+            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/20241230_055524_0000.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        footer .highlight {
-            color: #ff0000;
-            font-weight: bold;
-        }
-        
         /* Menu de navegação */
         nav {
             width: 100%;
@@ -64,35 +59,52 @@
             color: #007f00;
         }
 
+        /* Conteúdo principal */
+        h1, p {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Link de contato */
         .contact-link {
             color: #00ff00;
             text-decoration: none;
             font-size: 20px;
             font-weight: bold;
         }
+
         .contact-link:hover {
             text-decoration: underline;
             color: #ffffff;
         }
-        /* Banner */
-        .banner {
+
+        /* Rodapé */
+        footer {
+            margin-top: auto;
+            padding: 10px 0;
+            background-color: #111;
+            color: #00ff00;
+            font-size: 14px;
             width: 100%;
-            height: 150px; /* Altura fixa do banner */
-            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/20241230_055524_0000.png'); /* Imagem do banner da página inicial */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            text-align: center;
         }
-        /* Estilo para destacar o texto em verde */
-        .highlight {
-            color: #00ff00; /* Cor verde */
+
+        footer .highlight {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* Estilo para o conteúdo */
+        .content-container {
+            max-width: 720px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-    <!-- Banner -->
+    <!-- Banner (Logo) -->
     <div class="banner"></div>
 
+    <!-- Menu de navegação -->
     <nav>
         <div class="nav-container">
             <a href="index.html">Home</a>
@@ -103,10 +115,14 @@
         </div>
     </nav>
     
-    <h1>Contato</h1>
-    <p>Entre em contato conosco pelo Telegram:</p>
-    <p><a href="https://t.me/BLACKGHOST_B" target="_blank" class="contact-link">Clique aqui para acessar o Telegram</a></p>
-    
+    <!-- Conteúdo Principal -->
+    <div class="content-container">
+        <h1>Contato</h1>
+        <p>Entre em contato conosco pelo Telegram:</p>
+        <p><a href="https://t.me/BLACKGHOST_B" target="_blank" class="contact-link">Clique aqui para acessar o Telegram</a></p>
+    </div>
+
+    <!-- Rodapé -->
     <footer>
         <p>Todos os direitos reservados a <strong class="highlight">@BLACKGHOST_B</strong> | 2024/2025</p>
     </footer>
