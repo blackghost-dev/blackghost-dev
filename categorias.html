@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV - VLC</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <style>
         /* Estilo geral */
         body {
             background-color: black;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -58,28 +59,57 @@
             color: #007f00;
         }
 
-        /* Categorias e botões */
-        .category {
+        /* Container das categorias de canais (ajustado para empilhar verticalmente) */
+        .categories-container {
+            display: flex;
+            flex-direction: column; /* Mudando de linha para coluna */
+            justify-content: center;
+            align-items: center;
             width: 90%;
             margin: 20px auto;
         }
 
-        .category h2 {
-            color: #ffa500;
+        /* Estilo do menu com opções de canais */
+        .category {
+            width: 90%; /* Ajustado para ocupar a largura total do container */
+            margin: 10px 0;
+            background-color: #222;
+            border-radius: 10px;
+            padding: 6px 0; /* Reduzido o padding para compactar */
+            text-align: center;
+            cursor: pointer;
+            transition: padding 0.3s ease;
         }
 
-        .channel button {
+        .category h2 {
+            color: #ffa500;
+            margin: 0;
+            font-size: 16px; /* Reduzido o tamanho da fonte para compactar */
+            padding: 6px 0;
+        }
+
+        /* Estilo dos botões de canais */
+        .channel-buttons {
+            display: none;
+            justify-content: space-evenly; /* Distribui os botões de forma uniforme */
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .channel-buttons button {
             background-color: #000;
             border: 1px solid #ffa500;
             color: #ffa500;
-            font-size: 16px;
-            padding: 10px;
-            margin: 5px;
+            font-size: 12px; /* Reduzido o tamanho da fonte */
+            padding: 4px 8px; /* Reduzido o padding */
+            margin: 4px; /* Menor margem entre os botões */
             cursor: pointer;
-            width: 100%;
+            width: auto;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .channel button:hover {
+        .channel-buttons button:hover {
             background-color: #00ff00;
             color: #000;
         }
@@ -118,25 +148,44 @@
 
     <h1>TV - VLC</h1>
 
-    <!-- Categorias de canais -->
-    <div class="category">
-        <h2>GLOBO</h2>
-        <div class="channels" id="globoChannels">
-            <!-- Canais Globo serão carregados aqui -->
+    <!-- Container de categorias empilhadas verticalmente -->
+    <div class="categories-container">
+        <!-- Categorias de canais -->
+        <div class="category" onclick="toggleChannels('globoChannels')">
+            <h2>GLOBO SP</h2>
+            <div class="channel-buttons" id="globoChannels">
+                <button onclick="window.location.href='vlc://http://link_documentario.m3u8'">GLOBO SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8'">GLOBO HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8'">GLOBO FHD</button>
+            </div>
         </div>
-    </div>
 
-    <div class="category">
-        <h2>SBT</h2>
-        <div class="channels" id="sbtChannels">
-            <!-- Canais SBT serão carregados aqui -->
+        <div class="category" onclick="toggleChannels('sbtChannels')">
+            <h2>SBT SP</h2>
+            <div class="channel-buttons" id="sbtChannels">
+                <button onclick="window.location.href='vlc://http://link_documentario.m3u8'">SBT SD</button>
+                <button onclick="window.location.href='vlc://http://link_sbt_nacional.m3u8'">SBT HD</button>
+                <button onclick="window.location.href='vlc://http://link_sbt_sp.m3u8'">SBT FHD</button>
+            </div>
         </div>
-    </div>
 
-    <div class="category">
-        <h2>RECORD</h2>
-        <div class="channels" id="recordChannels">
-            <!-- Canais Record serão carregados aqui -->
+        <div class="category" onclick="toggleChannels('recordChannels')">
+            <h2>RECORD SP</h2>
+            <div class="channel-buttons" id="recordChannels">
+                <button onclick="window.location.href='vlc://http://link_documentario.m3u8'">RECORD SD</button>
+                <button onclick="window.location.href='vlc://http://link_record_rj.m3u8'">Record HD</button>
+                <button onclick="window.location.href='vlc://http://link_record_sp.m3u8'">Record FHD</button>
+            </div>
+        </div>
+
+        <!-- Categoria CANAIS DOCUMENTÁRIOS -->
+        <div class="category" onclick="toggleChannels('documentariesChannels')">
+            <h2>DOCUMENTÁRIOS</h2>
+            <div class="channel-buttons" id="documentariesChannels">
+                <button onclick="window.location.href='vlc://http://link_documentario.m3u8'">ANIMAL SD</button>
+                <button onclick="window.location.href='vlc://http://link_documentario.m3u8'">ANIMAL HD</button>
+                <button onclick="window.location.href='vlc://http://link_documentario2.m3u8'">ANIMAL FHD</button>
+            </div>
         </div>
     </div>
 
@@ -146,43 +195,11 @@
     </footer>
 
     <script>
-        // Definindo os links dos canais
-        const channels = {
-            globo: [
-                { name: "GLOBO SP HD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8" },
-                { name: "GLOBO SP FHD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8" }
-            ],
-            sbt: [
-                { name: "SBT Nacional", url: "http://link_sbt_nacional.m3u8" },
-                { name: "SBT SP", url: "http://link_sbt_sp.m3u8" }
-            ],
-            record: [
-                { name: "Record RJ", url: "http://link_record_rj.m3u8" },
-                { name: "Record SP", url: "http://link_record_sp.m3u8" }
-            ]
-        };
-
-        // Função para carregar os canais em uma categoria
-        function loadChannels(category, containerId) {
-            const container = document.getElementById(containerId);
-            channels[category].forEach(channel => {
-                const div = document.createElement("div");
-                div.className = "channel";
-                const button = document.createElement("button");
-                button.textContent = channel.name;
-                button.onclick = function() {
-                    // Criando o link para abrir o VLC
-                    window.location.href = "vlc://" + channel.url;
-                };
-                div.appendChild(button);
-                container.appendChild(div);
-            });
+        // Função para alternar a exibição dos canais
+        function toggleChannels(channelId) {
+            const channels = document.getElementById(channelId);
+            channels.style.display = channels.style.display === 'none' || channels.style.display === '' ? 'flex' : 'none';
         }
-
-        // Carregar canais de todas as categorias
-        loadChannels("globo", "globoChannels");
-        loadChannels("sbt", "sbtChannels");
-        loadChannels("record", "recordChannels");
     </script>
 
 </body>
