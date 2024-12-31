@@ -58,7 +58,7 @@
             color: #007f00;
         }
 
-        /* Menu de canais */
+        /* Menu */
         .menu {
             width: 100%;
             max-width: 720px;
@@ -176,7 +176,12 @@
             globoChannels.forEach(channel => {
                 const button = document.createElement('button');
                 button.textContent = channel.name;
-                button.onclick = () => window.open(`vlc://${channel.url}`, '_blank');
+                button.onclick = () => {
+                    const confirmation = confirm(`Você tem certeza que quer abrir o canal "${channel.name}" no VLC?`);
+                    if (confirmation) {
+                        window.open(`vlc://${channel.url}`, '_blank'); // Tenta abrir o VLC
+                    }
+                };
                 list.appendChild(button);
             });
         }
