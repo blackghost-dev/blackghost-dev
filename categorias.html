@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player TV ao Vivo - VLC</title>
+    <title>Player HLS</title>
+    <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
     <style>
-        /* Estilos gerais */
+        /* Estilo geral */
         body {
             background-color: black;
             color: white;
@@ -20,50 +21,89 @@
             min-height: 100vh;
         }
 
-        /* Banner com imagem ajustada */
+        /* Banner (Logo) */
         .banner {
             width: 100%;
-            height: 150px; /* Altura do banner */
+            height: 150px;
             background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/20241230_055524_0000.png');
-            background-size: cover; /* Preenche o banner cortando partes, se necessário */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita repetição da imagem */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Menu de navegação */
         nav {
-            background-color: #000;
-            padding: 10px;
             width: 100%;
-            z-index: 10;
+            background-color: #111;
+            padding: 10px 0;
+            margin-bottom: 20px;
         }
 
         .nav-container {
+            max-width: 720px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center; /* Alinha os links ao centro */
+            justify-content: space-around;
         }
-        
+
         nav a {
-            margin: 0 10px;
             color: #00ff00;
-            font-size: 18px;
             text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: color 0.3s;
         }
+
         nav a:hover {
-            text-decoration: underline;
+            color: #007f00;
         }
 
-        /* Categoria de canais */
-        .category {
-            width: 90%;
-            margin: 20px auto;
+        /* Player fixo */
+        .video-container {
+            width: 100%;  
+            max-width: 720px; 
+            margin: 0 auto 20px; 
+            position: relative;
+            background-color: black;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
         }
 
-        .category h2 {
-            color: #00ff00;
+        video {
+            width: 100%; 
+            height: 100%; 
         }
 
-        .channel button {
+        /* Menu de canais */
+        .menu {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .menu button {
+            background-color: #00ff00;
+            border: none;
+            color: black;
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .menu button:hover {
+            background-color: #007f00;
+        }
+
+        /* Lista de canais */
+        .channel-list {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .channel-list button {
             background-color: #000;
             border: 1px solid #00ff00;
             color: #00ff00;
@@ -71,12 +111,12 @@
             padding: 10px;
             margin: 5px;
             cursor: pointer;
-            width: 100%;
+            width: 90%;
         }
 
-        .channel button:hover {
+        .channel-list button:hover {
             background-color: #00ff00;
-            color: #000;
+            color: black;
         }
 
         /* Rodapé */
@@ -94,12 +134,11 @@
             color: #ff0000;
             font-weight: bold;
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Banner com imagem ajustada -->
+    <!-- Banner (Logo) -->
     <div class="banner"></div>
 
     <!-- Menu de navegação -->
@@ -113,74 +152,76 @@
         </div>
     </nav>
 
-    <h1>Player TV ao Vivo - VLC</h1>
-
-    <!-- Canais -->
-    <div class="category">
-        <h2>GLOBO</h2>
-        <div class="channels" id="globoChannels">
-            <!-- Canais Globo serão carregados aqui -->
-        </div>
+    <!-- Container do Player -->
+    <div class="video-container">
+        <video
+            id="player"
+            class="video-js vjs-default-skin"
+            controls
+            preload="auto"
+            data-setup='{"fluid": true}'>
+            <source id="videoSource" src="" type="application/x-mpegURL">
+            Seu navegador não suporta reprodução de vídeos HLS.
+        </video>
     </div>
 
-    <div class="category">
-        <h2>SBT</h2>
-        <div class="channels" id="sbtChannels">
-            <!-- Canais SBT serão carregados aqui -->
-        </div>
+    <!-- Menu -->
+    <div class="menu">
+        <button onclick="toggleChannelList()">Canais Globo</button>
     </div>
 
-    <div class="category">
-        <h2>RECORD</h2>
-        <div class="channels" id="recordChannels">
-            <!-- Canais Record serão carregados aqui -->
-        </div>
+    <!-- Lista de canais -->
+    <div class="channel-list" id="globoChannelList">
+        <!-- Os botões de canais serão gerados dinamicamente -->
     </div>
-
-    <script>
-        // Definindo os links dos canais
-        const channels = {
-            globo: [
-                { name: "GLOBO SP HD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8" },
-                { name: "GLOBO SP FHD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8" }
-            ],
-            sbt: [
-                { name: "SBT Nacional", url: "http://link_sbt_nacional.m3u8" },
-                { name: "SBT SP", url: "http://link_sbt_sp.m3u8" }
-            ],
-            record: [
-                { name: "Record RJ", url: "http://link_record_rj.m3u8" },
-                { name: "Record SP", url: "http://link_record_sp.m3u8" }
-            ]
-        };
-
-        // Função para carregar os canais em uma categoria
-        function loadChannels(category, containerId) {
-            const container = document.getElementById(containerId);
-            channels[category].forEach(channel => {
-                const div = document.createElement("div");
-                div.className = "channel";
-                const button = document.createElement("button");
-                button.textContent = channel.name;
-                button.onclick = function() {
-                    // Criando o link para abrir o VLC
-                    window.location.href = "vlc://" + channel.url;
-                };
-                div.appendChild(button);
-                container.appendChild(div);
-            });
-        }
-
-        // Carregar canais de todas as categorias
-        loadChannels("globo", "globoChannels");
-        loadChannels("sbt", "sbtChannels");
-        loadChannels("record", "recordChannels");
-    </script>
 
     <!-- Rodapé -->
     <footer>
         <p>Todos os direitos reservados a <strong class="highlight">@BLACKGHOST_B</strong> | 2024/2025</p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+    <script>
+        // Lista de canais Globo
+        const globoChannels = [
+            { name: "GLOBO SP HD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8" },
+            { name: "GLOBO RJ HD", url: "http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113821.m3u8" }
+        ];
+
+        // Função para alternar a exibição da lista de canais
+        function toggleChannelList() {
+            const list = document.getElementById('globoChannelList');
+            if (list.style.display === 'none' || list.style.display === '') {
+                list.style.display = 'block';
+                loadChannels();
+            } else {
+                list.style.display = 'none';
+            }
+        }
+
+        // Função para carregar os canais na lista
+        function loadChannels() {
+            const list = document.getElementById('globoChannelList');
+            list.innerHTML = ''; // Limpar a lista antes de adicionar
+            globoChannels.forEach(channel => {
+                const button = document.createElement('button');
+                button.textContent = channel.name;
+                button.onclick = () => playChannel(channel.url);
+                list.appendChild(button);
+            });
+        }
+
+        // Função para carregar e reproduzir o canal no player
+        function playChannel(url) {
+            const player = videojs('player');
+            const source = document.getElementById('videoSource');
+            source.src = url;
+            player.src({ src: url, type: 'application/x-mpegURL' });
+            player.play();
+            console.log(`Reproduzindo: ${url}`);
+        }
+    </script>
 
 </body>
 </html>

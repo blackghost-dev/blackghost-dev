@@ -36,24 +36,34 @@
             font-weight: bold;
         }
         
+        /* Menu de navegação */
         nav {
-            background-color: #000;
-            padding: 10px;
             width: 100%;
+            background-color: #111;
+            padding: 10px 0;
+            margin-bottom: 20px;
         }
+
         .nav-container {
+            max-width: 720px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
         }
+
         nav a {
-            margin: 0 10px;
             color: #00ff00;
-            font-size: 18px;
             text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: color 0.3s;
         }
+
         nav a:hover {
-            text-decoration: underline;
+            color: #007f00;
         }
+
         .contact-link {
             color: #00ff00;
             text-decoration: none;
