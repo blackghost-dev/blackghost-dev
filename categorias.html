@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACKGHOST-dev TV</title>
-    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet">
+    <title>TV - VLC</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <style>
         /* Estilo geral */
         body {
             background-color: black;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -59,61 +59,60 @@
             color: #007f00;
         }
 
-        /* Player */
-        #player-container {
-            width: 100%;
-            max-width: 720px;
-            margin: 20px auto;
-            display: flex;
-            justify-content: center;
-        }
-
-        video {
-            width: 100%;
-            max-width: 720px;
-            height: 400px;
-            border: 2px solid #ffa500;
-        }
-
-        /* Categorias */
+        /* Container das categorias de canais (ajustado para empilhar verticalmente) */
         .categories-container {
-            max-width: 720px;
+            display: flex;
+            flex-direction: column; /* Mudando de linha para coluna */
+            justify-content: center;
+            align-items: center;
+            width: 90%;
             margin: 20px auto;
-            text-align: left;
         }
 
+        /* Estilo do menu com opções de canais */
         .category {
+            width: 90%; /* Ajustado para ocupar a largura total do container */
+            margin: 10px 0;
             background-color: #222;
             border-radius: 10px;
-            margin-bottom: 10px;
-            padding: 40px; /* Aumentando o preenchimento */
-            min-height: 10px; /* Definindo uma altura mínima */
+            padding: 6px 0; /* Reduzido o padding para compactar */
+            text-align: center;
             cursor: pointer;
+            transition: padding 0.3s ease;
         }
 
         .category h2 {
+            color: #ffa500;
             margin: 0;
-            color: #ffa500;
-            text-align: center;
+            font-size: 16px; /* Reduzido o tamanho da fonte para compactar */
+            padding: 6px 0;
         }
 
-        .channels {
-            display: none;
-            margin-top: 10px;
+        /* Estilo dos botões de canais */
+        .channel-buttons {
+            display: flex;
+            justify-content: space-evenly; /* Distribui os botões de forma uniforme */
+            align-items: center;
+            flex-wrap: wrap; /* Permite que os botões se ajustem automaticamente para a linha seguinte, se necessário */
+            margin-top: 8px;
+            width: 100%; /* Garante que a largura dos botões ocupe todo o espaço disponível */
         }
 
-        .channels button {
-            background-color: black;
-            color: #ffa500;
+        .channel-buttons button {
+            background-color: #000;
             border: 1px solid #ffa500;
-            padding: 5px 10px;
-            margin: 5px;
+            color: #ffa500;
+            font-size: 12px; /* Reduzido o tamanho da fonte */
+            padding: 4px 8px; /* Reduzido o padding */
+            margin: 4px; /* Menor margem entre os botões */
             cursor: pointer;
+            width: auto;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .channels button:hover {
+        .channel-buttons button:hover {
             background-color: #00ff00;
-            color: black;
+            color: #000;
         }
 
         /* Rodapé */
@@ -134,6 +133,7 @@
     </style>
 </head>
 <body>
+
     <!-- Banner (Logo) -->
     <div class="banner"></div>
 
@@ -143,81 +143,93 @@
             <a href="index.html">INÍCIO</a>
             <a href="contato.html">CONTATO</a>
             <a href="repositorio.html">REPOSITÓRIO</a>
-            <a href="categorias.html">TV - HLS</a>
+            <a href="categorias.html">TV - VLC</a>
         </div>
     </nav>
 
-    <!-- Player -->
-    <div id="player-container">
-        <video id="hls-player" class="video-js vjs-default-skin" controls>
-            Seu navegador não suporta o player de vídeo.
-        </video>
-    </div>
+    <h1>TV - VLC</h1>
 
-    <!-- Categorias -->
+    <!-- Container de categorias empilhadas verticalmente -->
     <div class="categories-container">
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>GLOBO</h2>
-            <div class="channels">
-                <button onclick="playStream('http://gol7990.com:80/live/vini105/884512ab/113839.m3u8')">Globo SD</button>
-                <button onclick="playStream('http://example.com/globo-hd.m3u8')">Globo HD</button>
+        <!-- Categorias de canais -->
+        <div class="category" onclick="toggleChannels('globoChannels')">
+            <h2>GLOBO SP</h2>
+            <div class="channel-buttons" id="globoChannels" style="display: none;">
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/113818.m3u8'">GLOBO SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8'">GLOBO HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8'">GLOBO FHD</button>
             </div>
         </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>SBT</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/sbt-sd.m3u8')">SBT SD</button>
+
+        <div class="category" onclick="toggleChannels('sbtChannels')">
+            <h2>SBT SP</h2>
+            <div class="channel-buttons" id="sbtChannels" style="display: none;">
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/605499.m3u8'">SBT SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/644696.m3u8'">SBT HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/644697.m3u8'">SBT FHD</button>
             </div>
         </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>BAND</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/band-sd.m3u8')">Band SD</button>
+
+        <div class="category" onclick="toggleChannels('recordChannels')">
+            <h2>BAND SP</h2>
+            <div class="channel-buttons" id="recordChannels" style="display: none;">
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/644725.m3u8'">BAN SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/644725.m3u8'">BAND HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/644846.m3u8'">BAND FHD</button>
             </div>
         </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>RECORD</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/record-sd.m3u8')">Record SD</button>
-                <button onclick="playStream('http://example.com/record-hd.m3u8')">Record HD</button>
+
+        <!-- Categoria CANAIS DOCUMENTÁRIOS -->
+        <div class="category" onclick="toggleChannels('documentariesChannels')">
+            <h2>DOCUMENTÁRIOS</h2>
+            <div class="channel-buttons" id="documentariesChannels" style="display: none;">
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/129376.m3u8'">ANIMAL SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/129378.m3u8'">ANIMAL HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/608186.m3u8'">ANIMAL FHD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/4314.m3u8'">HISTORY SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/97247.m3u8'">HISTORY HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/13211.m3u8'">HISTORY FHD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/4367.m3u8'">HISTORY 2 SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/6111.m3u8'">HISTORY 2 HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/69152.m3u8'">HISTORY 2 FHD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/644604.m3u8'">NATGEO SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/113083.m3u8'">NATGEO HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/113085.m3u8'">NATGEO FHD</button>
             </div>
         </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>FOX</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/fox-sd.m3u8')">Fox SD</button>
+
+        <!-- Categoria CANAIS | FILMES E SERIES -->
+        <div class="category" onclick="toggleChannels('FILMESESERIESChannels')">
+            <h2>FILMES E SERIES</h2>
+            <div class="channel-buttons" id="FILMESESERIESChannels" style="display: none;">
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/4307.m3u8'">WARNER SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/6072.m3u8'">WARNER HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/61228.m3u8'">WARNER FHD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/4328.m3u8'">SPACE SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/6085.m3u8'">SPACE HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/33767.m3u8'">SPACE FHD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/4354.m3u8'">MEGAPIX SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/6101.m3u8'">MEGAPIX HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/97003.m3u8'">MEGAPIX FHD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/97227.m3u8'">AXN SD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/60937.m3u8'">AXN HD</button>
+                <button onclick="window.location.href='vlc://http://gol7990.com:80/live/vini105/884512ab/97225.m3u8'">AXN FHD</button>
             </div>
         </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>ESPN</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/espn-sd.m3u8')">ESPN SD</button>
-                <button onclick="playStream('http://example.com/espn-hd.m3u8')">ESPN HD</button>
-            </div>
-        </div>
-    </div>
+     </div>
 
     <!-- Rodapé -->
     <footer>
-        <p>COPYRIGHT [2024] <strong class="highlight">@BLACKGHOST_B</strong> | TODOS OS DIREITOS RESERVADOS.</p>
+        <p>COPYRIGHT [2024]<strong class="highlight"> @BLACKGHOST_B</strong> | TODOS OS DIREITOS RESERVADOS.</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://vjs.zencdn.net/7.10.2/video.js"></script>
     <script>
-        function playStream(url) {
-            const player = document.getElementById('hls-player');
-            player.src = url;
-            player.load();
-            player.play();
-        }
-
-        function toggleChannels(categoryElement) {
-            const channels = categoryElement.querySelector('.channels');
-            const isVisible = channels.style.display === 'block';
-            document.querySelectorAll('.channels').forEach(el => el.style.display = 'none');
-            channels.style.display = isVisible ? 'none' : 'block';
+        // Função para alternar a exibição dos canais
+        function toggleChannels(channelId) {
+            const channels = document.getElementById(channelId);
+            channels.style.display = channels.style.display === 'none' ? 'flex' : 'none';
         }
     </script>
+
 </body>
 </html>
