@@ -156,38 +156,20 @@
         <div class="category" onclick="toggleChannels(this)">
             <h2>GLOBO</h2>
             <div class="channels">
-                <button onclick="playStream('http://gol7990.com:80/live/vini105/884512ab/113839.m3u8')">Globo SD</button>
-                <button onclick="playStream('http://example.com/globo-hd.m3u8')">Globo HD</button>
+                <button onclick="playStream('/api/proxy?url=http://gol7990.com:80/live/vini105/884512ab/113839.m3u8')">Globo SD</button>
+                <button onclick="playStream('/api/proxy?url=http://example.com/globo-hd.m3u8')">Globo HD</button>
             </div>
         </div>
         <div class="category" onclick="toggleChannels(this)">
             <h2>SBT</h2>
             <div class="channels">
-                <button onclick="playStream('http://example.com/sbt-sd.m3u8')">SBT SD</button>
+                <button onclick="playStream('/api/proxy?url=http://example.com/sbt-sd.m3u8')">SBT SD</button>
             </div>
         </div>
         <div class="category" onclick="toggleChannels(this)">
             <h2>BAND</h2>
             <div class="channels">
-                <button onclick="playStream('http://example.com/band-sd.m3u8')">Band SD</button>
-            </div>
-        </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>FILMES E SÉRIES</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/movies.m3u8')">Canal de Filmes</button>
-            </div>
-        </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>DOCUMENTÁRIOS</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/docs.m3u8')">Canal de Documentários</button>
-            </div>
-        </div>
-        <div class="category" onclick="toggleChannels(this)">
-            <h2>FUTEBOL</h2>
-            <div class="channels">
-                <button onclick="playStream('http://example.com/sports.m3u8')">Esporte ao Vivo</button>
+                <button onclick="playStream('/api/proxy?url=http://example.com/band-sd.m3u8')">Band SD</button>
             </div>
         </div>
     </div>
