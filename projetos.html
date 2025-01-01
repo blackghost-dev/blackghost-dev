@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACKGHOST-dev - REPOSITÓRIO</title>
+    <title>BLACKGHOST - INSTRUÇÕES</title>
     <style>
         /* Estilo geral */
         body {
@@ -100,6 +100,25 @@
             color: #ffa500;
             text-decoration: underline;
         }
+
+        /* Estilo para o botão */
+        button {
+            background-color: #111; /* Cor do menu */
+            border: none;
+            color: #ffa500; /* Cor do texto igual ao menu */
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        /* Remove o efeito de hover */
+        button:hover {
+            background-color: #111; /* Mantém a cor ao passar o mouse */
+            color: #ffa500; /* Mantém a cor do texto */
+        }
+
     </style>
 </head>
 <body>
@@ -111,32 +130,28 @@
         <div class="nav-container">
             <a href="index.html">INÍCIO</a>
             <a href="contato.html">CONTATO</a>
-            <a href="repositorio.html">REPOSITÓRIO</a>
+            <a href="projetos.html">PROJETOS</a>
             <a href="categorias.html">TV - VLC</a>
         </div>
     </nav>
     
     <!-- Conteúdo Principal -->
     <div class="content-container">
-        <h1><span class="highlight">REPOSITÓRIO - BLACKGHOST</span></h1>
+        <h1><span class="highlight">BLACKGHOST</span></h1>
         <p><strong>Versão Atual:</strong> <span class="highlight">2.0</span></p>
 
-        <h3>Instruções para Adicionar este Repositório ao Kodi</h3>
+        <h3>Instruções para Instalar o Addon no Kodi a Partir de um Arquivo .zip</h3>
         <ol>
-            <li>Acesse o <strong>Gerenciador de Arquivos</strong> no Kodi.</li>
-            <li>Clique em <strong>"Adicionar Fonte"</strong>.</li>
-            <li>Insira o seguinte endereço:  
-                <code class="highlight">https://repoblackghost.github.io</code>  
-                de nome de <strong class="highlight">"repoblackghost"</strong>.
-            </li>
-            <li>Retorne ao menu principal e vá até <strong>Add-ons</strong>.</li>
-            <li>Clique em <strong>"Instalar de um arquivo .zip"</strong>, selecione a fonte <strong class="highlight">repoblackghost</strong> e instale o arquivo:  
-                <a href="https://github.com/blackghost-dev/blackghost-dev.github.io/raw/master/repository.repoblackghost-2.0.zip" class="highlight">repository.repoblackghost-2.0.zip</a>.
-            </li>
-            <li>Após a instalação, volte a <strong>"Add-ons"</strong>, mas desta vez clique em <strong>"Instalar do Repositório"</strong>.</li>
-            <li>Selecione o <strong class="highlight">"repoblackghost Repository"</strong> e explore os conteúdos disponíveis.</li>
+            <li>Abra o Kodi e vá até o menu <strong>Adicionar-ons</strong>.</li>
+            <li>Clique em <strong>"Instalar de um arquivo .zip"</strong>.</li>
+            <li>Selecione o arquivo <strong>.zip</strong> que você baixou.</li>
+            <li>Após a instalação, o addon estará disponível para uso no Kodi.</li>
         </ol>
-        <p style="text-align: center; font-style: italic;">Agora é só aproveitar o conteúdo disponível!</p>
+        <!-- Botão de download abaixo de "Após a instalação, o addon estará disponível para uso no Kodi." -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="window.location.href='https://github.com/blackghost-dev/blackghost-dev.github.io/raw/master/repository.repoblackghost-2.0.zip'">Baixar Arquivo 📂</button>
+            <p style="text-align: center; font-style: italic;">Agora é só aproveitar o conteúdo disponível!</p>
+        </div>
     </div>
 
     <!-- Rodapé -->
