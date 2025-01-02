@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV - VLC</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- Inclusão do hls.js -->
     <style>
         body {
             background-color: black;
@@ -123,6 +124,21 @@
             color: #00ffff;
             font-weight: bold;
         }
+
+        /* Player style */
+        .player-container {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .player-container video {
+            width: 100%;
+            height: 500px;
+            background-color: #000;
+        }
     </style>
 </head>
 <body>
@@ -144,6 +160,11 @@
 
     <!-- Container das categorias de canais -->
     <div class="categories-container" id="categoriesContainer"></div>
+
+    <!-- Player -->
+    <div class="player-container" id="playerContainer">
+        <!-- O player será carregado aqui com base na seleção do canal -->
+    </div>
 
     <footer>
         <p>Desenvolvido por <span class="highlight">@BLACKGHOST_B</span></p>
@@ -192,7 +213,7 @@
 
                             const button = document.createElement('button');
                             button.innerText = channelName;
-                            button.onclick = () => window.location.href = `vlc://${channelLink}`;
+                            button.onclick = () => loadPlayer(channelLink);  // Chama a função para carregar o player
                             channelButtonsDiv.appendChild(button);
                         }
 
@@ -207,6 +228,30 @@
         function toggleChannels(id) {
             const channelsDiv = document.getElementById(id);
             channelsDiv.style.display = (channelsDiv.style.display === 'none') ? 'flex' : 'none';
+        }
+
+        // Função para carregar o player com o canal selecionado usando hls.js
+        function loadPlayer(channelUrl) {
+            const playerContainer = document.getElementById('playerContainer');
+            playerContainer.innerHTML = ''; // Limpa o player anterior
+
+            const video = document.createElement('video');
+            video.controls = true;
+
+            // Verifica se o HLS.js é suportado
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(channelUrl); // Canal HLS
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play();
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = channelUrl; // Caso o navegador já suporte HLS nativamente (exemplo: Safari)
+                video.play();
+            }
+
+            playerContainer.appendChild(video);
         }
 
         // Carregar os dados do XML quando a página carregar
