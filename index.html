@@ -7,7 +7,7 @@
     <style>
         /* Estilos gerais */
         body {
-            background-color: black; /* Fundo preto */
+            background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -21,20 +21,20 @@
         }
 
         h1, p, nav a, footer {
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para o texto */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
-        /* Banner com imagem ajustada */
+        /* Banner */
         .banner {
             width: 100%;
-            height: 150px; /* Altura do banner */
+            height: 150px;
             background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/topo2.png');
-            background-size: contain; /* Ajuste para o tamanho da imagem */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita repetição da imagem */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* Menu de navegação */
+        /* Navegação */
         nav {
             width: 100%;
             background-color: #111;
@@ -62,6 +62,49 @@
             color: #007f00;
         }
 
+        /* Carrossel */
+        .carousel {
+            width: 90%;
+            max-width: 720px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .carousel-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
         /* Conteúdo */
         .content {
             max-width: 720px;
@@ -83,18 +126,11 @@
             color: #00ffff;
             font-weight: bold;
         }
-
-        /* Estilo para destacar o texto em verde */
-        .highlight {
-            color: #ffa500; /* Cor verde */
-        }
     </style>
 </head>
 <body>
-    <!-- Banner com imagem ajustada -->
     <div class="banner"></div>
 
-    <!-- Menu de navegação -->
     <nav>
         <div class="nav-container">
             <a href="index.html">INÍCIO</a>
@@ -103,14 +139,55 @@
             <a href="categorias.html">TV - VLC</a>
         </div>
     </nav>
-    
+
+    <!-- Carrossel de destaques -->
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/icon.png" alt="Projeto 1">
+            <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/repo_icon.png" alt="Projeto 2">
+            <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/20241226_130045_0000.png" alt="Projeto 3">
+        </div>
+        <div class="carousel-controls">
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+    </div>
+
     <div class="content">
         <h1>@BLACKGHOST_B</h1>
         <p>Bem-vindo ao site oficial do projeto BLACKGHOST-dev! Este espaço foi criado para centralizar informações, ferramentas e novidades relacionadas ao projeto. Em breve, traremos atualizações que irão melhorar a experiência do usuário.</p>
     </div>
-    
+
     <footer>
-        <p>COPYRIGHT [2024]<strong class="highlight"> @BLACKGHOST_B</strong> | TODOS OS DIREITOS RESERVADOS.</p>
+        <p>COPYRIGHT [2024] <strong class="highlight">@BLACKGHOST_B</strong> | TODOS OS DIREITOS RESERVADOS.</p>
     </footer>
+
+    <script>
+        const carouselImages = document.querySelector('.carousel-images');
+        const images = document.querySelectorAll('.carousel-images img');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let index = 0;
+
+        function updateCarousel() {
+            const width = images[0].clientWidth;
+            carouselImages.style.transform = `translateX(${-index * width}px)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            index = (index > 0) ? index - 1 : images.length - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            index = (index < images.length - 1) ? index + 1 : 0;
+            updateCarousel();
+        });
+
+        setInterval(() => {
+            index = (index < images.length - 1) ? index + 1 : 0;
+            updateCarousel();
+        }, 5000);
+    </script>
 </body>
 </html>
