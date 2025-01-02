@@ -1,36 +1,36 @@
 <categories>
-    <category name="GLOBO SP">
+    <category name="GLOBO TV">
         <channel name="GLOBO SD" url="http://gol7990.com:80/live/vini105/884512ab/113818.m3u8"/>
         <channel name="GLOBO HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8"/>
         <channel name="GLOBO FHD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8"/>
     </category>
-    <category name="REDETV">
+    <category name="BAND TV">
         <channel name="REDETV SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
         <channel name="REDETV HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
     </category>
-    <category name="SBT">
+    <category name="SBT TV">
         <channel name="SBT SD" url="http://gol7990.com:80/live/vini105/abcd1234/115555.m3u8"/>
         <channel name="SBT HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/115556.m3u8"/>
         <channel name="SBT FHD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/115557.m3u8"/>
     </category>
-    <category name="BAND">
+    <category name="FILMES">
         <channel name="BAND SD" url="http://gol7990.com:80/live/vini105/abcd1234/116666.m3u8"/>
         <channel name="BAND HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/116667.m3u8"/>
     </category>
-    <category name="TV CULTURA">
+    <category name="SÉRIES">
         <channel name="TV CULTURA SD" url="http://gol7990.com:80/live/vini105/abcd1234/117777.m3u8"/>
         <channel name="TV CULTURA HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/117778.m3u8"/>
     </category>
-    <category name="RECORD TV">
+    <category name="DOCUMENTÁRIOS">
         <channel name="RECORD TV SD" url="http://gol7990.com:80/live/vini105/abcd1234/118888.m3u8"/>
         <channel name="RECORD TV HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/118889.m3u8"/>
         <channel name="RECORD TV FHD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/118890.m3u8"/>
     </category>
-    <category name="MTV BRASIL">
+    <category name="DISCOVERY CHANNEL">
         <channel name="MTV BRASIL SD" url="http://gol7990.com:80/live/vini105/abcd1234/119999.m3u8"/>
         <channel name="MTV BRASIL HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/120000.m3u8"/>
     </category>
-    <category name="FOX SPORTS">
+    <category name="PREMIERE">
         <channel name="FOX SPORTS SD" url="http://gol7990.com:80/live/vini105/abcd1234/120111.m3u8"/>
         <channel name="FOX SPORTS HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/120112.m3u8"/>
     </category>
@@ -47,7 +47,7 @@
         <channel name="TLC SD" url="http://gol7990.com:80/live/vini105/abcd1234/123333.m3u8"/>
         <channel name="TLC HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/123334.m3u8"/>
     </category>
-    <category name="DISCOVERY CHANNEL">
+    <category name="SPORT TV">
         <channel name="DISCOVERY CHANNEL SD" url="http://gol7990.com:80/live/vini105/abcd1234/124444.m3u8"/>
         <channel name="DISCOVERY CHANNEL HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/124445.m3u8"/>
     </category>
