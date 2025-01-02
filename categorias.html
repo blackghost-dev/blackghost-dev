@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV - VLC</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         body {
             background-color: black;
@@ -14,54 +13,205 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
         }
-        #video-container {
-            margin: 20px auto;
-            max-width: 720px;
-        }
-        video {
+
+        .banner {
             width: 100%;
-            height: auto;
-            background-color: black;
+            height: 150px;
+            background-image: url('https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/topo2.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        nav {
+            width: 100%;
+            background-color: #111;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: #ffa500;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #007f00;
+        }
+
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .category {
+            width: 90%;
+            margin: 10px 0;
+            background-color: #222;
+            border-radius: 10px;
+            padding: 6px 0;
+            text-align: center;
+            cursor: pointer;
+            transition: padding 0.3s ease;
+        }
+
+        .category h2 {
+            color: #ffa500;
+            margin: 0;
+            font-size: 16px;
+            padding: 6px 0;
+        }
+
+        .channel-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .channel-buttons button {
+            background-color: #000;
+            border: 1px solid #ffa500;
+            color: #ffa500;
+            font-size: 12px;
+            padding: 4px 8px;
+            margin: 4px;
+            cursor: pointer;
+            width: auto;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .channel-buttons button:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 10px 0;
+            background-color: #111;
+            color: #ffa500;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer .highlight {
+            color: #00ffff;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Player de TV</h1>
 
-    <div id="video-container">
-        <video id="video" controls></video>
-    </div>
+    <!-- Banner -->
+    <div class="banner"></div>
+
+    <!-- Menu de navegação -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">INÍCIO</a>
+            <a href="contato.html">CONTATO</a>
+            <a href="projetos.html">PROJETOS</a>
+            <a href="categorias.html">TV - VLC</a>
+        </div>
+    </nav>
+
+    <h1>TV - VLC</h1>
+
+    <!-- Container das categorias de canais -->
+    <div class="categories-container" id="categoriesContainer"></div>
+
+    <footer>
+        <p>Desenvolvido por <span class="highlight">@BLACKGHOST_B</span></p>
+    </footer>
 
     <script>
-        // URL do stream .m3u8
-        const videoUrl = 'http://gol7990.com:80/live/vini105/884512ab/113818.m3u8';
-        const video = document.getElementById('video');
+        // URL do XML hospedado no GitHub
+        const xmlUrl = "https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/servidores.xml";
 
-        // Verifique se o HLS.js é suportado
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(videoUrl);
-            hls.attachMedia(video);
+        // Função para carregar o XML e gerar o conteúdo dinâmico
+        function loadXMLData() {
+            fetch(xmlUrl)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data, "application/xml");
+                    const categories = xmlDoc.getElementsByTagName('category');
 
-            // Quando o manifesto for carregado, tente iniciar o vídeo
-            hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                video.play();
-            });
+                    const categoriesContainer = document.getElementById('categoriesContainer');
+                    categoriesContainer.innerHTML = ''; // Limpar o conteúdo antes de adicionar
 
-            // Captura erros do HLS.js
-            hls.on(Hls.Events.ERROR, function (event, data) {
-                console.error("HLS.js error:", data);
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            // Se o navegador suporta HLS nativamente (como no Safari), usa o recurso nativo
-            video.src = videoUrl;
-            video.addEventListener('loadedmetadata', function () {
-                video.play();
-            });
-        } else {
-            alert('Seu navegador não suporta reprodução de HLS.');
+                    // Iterar pelas categorias e gerar os botões de canais
+                    for (let i = 0; i < categories.length; i++) {
+                        const category = categories[i];
+                        const categoryName = category.getAttribute('name');
+                        const categoryChannels = category.getElementsByTagName('channel');
+                        
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'category';
+                        categoryDiv.onclick = () => toggleChannels(`channels${i}`);
+                        
+                        const categoryTitle = document.createElement('h2');
+                        categoryTitle.innerText = categoryName;
+                        categoryDiv.appendChild(categoryTitle);
+                        
+                        const channelButtonsDiv = document.createElement('div');
+                        channelButtonsDiv.className = 'channel-buttons';
+                        channelButtonsDiv.id = `channels${i}`;
+                        channelButtonsDiv.style.display = 'none';
+
+                        // Iterar pelos canais e adicionar os botões
+                        for (let j = 0; j < categoryChannels.length; j++) {
+                            const channel = categoryChannels[j];
+                            const channelName = channel.getAttribute('name');
+                            const channelLink = channel.getAttribute('url');
+
+                            const button = document.createElement('button');
+                            button.innerText = channelName;
+                            button.onclick = () => window.location.href = `vlc://${channelLink}`;
+                            channelButtonsDiv.appendChild(button);
+                        }
+
+                        categoryDiv.appendChild(channelButtonsDiv);
+                        categoriesContainer.appendChild(categoryDiv);
+                    }
+                })
+                .catch(error => console.error("Erro ao carregar o XML: ", error));
         }
+
+        // Função para alternar a visibilidade dos canais
+        function toggleChannels(id) {
+            const channelsDiv = document.getElementById(id);
+            channelsDiv.style.display = (channelsDiv.style.display === 'none') ? 'flex' : 'none';
+        }
+
+        // Carregar os dados do XML quando a página carregar
+        window.onload = loadXMLData;
     </script>
+
 </body>
 </html>
