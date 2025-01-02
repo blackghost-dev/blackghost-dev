@@ -158,8 +158,8 @@
 
     <h1 style="color: orange;">TV - VLC</h1>
     <h1 style="font-size: 18px;">
-  Para garantir o funcionamento correto da TV, é necessário que o usuário tenha o VLC e o navegador Kiwi instalados no celular. O Kiwi permite abrir o link diretamente no VLC, que é responsável por reproduzir os formatos de áudio e vídeo usados por transmissões M3U8.
-</h1>
+      Para garantir o funcionamento correto da TV, é necessário que o usuário tenha o VLC e o navegador Kiwi instalados no celular. O Kiwi permite abrir o link diretamente no VLC, que é responsável por reproduzir os formatos de áudio e vídeo usados por transmissões M3U8.
+    </h1>
 
     <!-- Container das categorias de canais -->
     <div class="categories-container" id="categoriesContainer"></div>
@@ -170,8 +170,8 @@
     </div>
 
     <footer>
-    <p>COPYRIGHT [2024]<strong class="highlight"> @BLACKGHOST_B</strong> | TODOS OS DIREITOS RESERVADOS.</p>
-</footer>
+        <p>COPYRIGHT [2024]<strong class="highlight"> @BLACKGHOST_B</strong> | TODOS OS DIREITOS RESERVADOS.</p>
+    </footer>
 
     <script>
         // URL do XML hospedado no GitHub
@@ -217,12 +217,13 @@
                             const button = document.createElement('button');
                             button.innerText = channelName;
 
-                            // Função para abrir o link no VLC ou exibir alerta
+                            // Função para abrir o link no VLC
                             button.onclick = () => {
-                                if (navigator.userAgent.includes("Kiwi")) {
-                                    window.location.href = `vlc://${channelLink}`;
-                                } else {
-                                    alert("Use o navegador Kiwi para abrir este link diretamente no VLC.");
+                                const vlcUrl = `vlc://${channelLink}`;
+                                try {
+                                    window.location.href = vlcUrl;
+                                } catch (error) {
+                                    alert("Não foi possível abrir o VLC diretamente. Certifique-se de que o VLC está instalado e configurado corretamente.");
                                 }
                             };
 
