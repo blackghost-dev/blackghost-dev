@@ -5,9 +5,31 @@
         <channel name="GLOBO HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113820.m3u8"/>
         <channel name="GLOBO FHD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/113825.m3u8"/>
     </category>
-    <category name="REDETV">
-        <channel name="REDETV SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
-        <channel name="REDETV HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
+    <category name="BAND TV">
+        <channel name="BAND SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
+        <channel name="BAND HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
     </category>
-    <!-- Outras categorias... -->
+    <category name="FILMES">
+        <channel name="BAND SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
+        <channel name="BAND HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
+</categories>
+    </category>
+    <category name="SÉRIES">
+        <channel name="BAND SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
+        <channel name="BAND HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
+</categories>
+    </category>
+    <category name="DOCUMENTÁRIOS">
+        <channel name="BAND SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
+        <channel name="BAND HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
+</categories>
+    </category>
+    <category name="DISCOVERY">
+        <channel name="BAND SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
+        <channel name="BAND HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
+</categories>
+    </category>
+    <category name="FUTEBOL">
+        <channel name="BAND SD" url="http://gol7990.com:80/live/vini105/abcd1234/112233.m3u8"/>
+        <channel name="BAND HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
 </categories>
