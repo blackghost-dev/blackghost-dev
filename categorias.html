@@ -216,7 +216,16 @@
 
                             const button = document.createElement('button');
                             button.innerText = channelName;
-                            button.onclick = () => loadPlayer(channelLink);  // Chama a função para carregar o player
+
+                            // Função para abrir o link no VLC ou exibir alerta
+                            button.onclick = () => {
+                                if (navigator.userAgent.includes("Kiwi")) {
+                                    window.location.href = `vlc://${channelLink}`;
+                                } else {
+                                    alert("Use o navegador Kiwi para abrir este link diretamente no VLC.");
+                                }
+                            };
+
                             channelButtonsDiv.appendChild(button);
                         }
 
@@ -231,30 +240,6 @@
         function toggleChannels(id) {
             const channelsDiv = document.getElementById(id);
             channelsDiv.style.display = (channelsDiv.style.display === 'none') ? 'flex' : 'none';
-        }
-
-        // Função para carregar o player com o canal selecionado usando hls.js
-        function loadPlayer(channelUrl) {
-            const playerContainer = document.getElementById('playerContainer');
-            playerContainer.innerHTML = ''; // Limpa o player anterior
-
-            const video = document.createElement('video');
-            video.controls = true;
-
-            // Verifica se o HLS.js é suportado
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(channelUrl); // Canal HLS
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play();
-                });
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = channelUrl; // Caso o navegador já suporte HLS nativamente (exemplo: Safari)
-                video.play();
-            }
-
-            playerContainer.appendChild(video);
         }
 
         // Carregar os dados do XML quando a página carregar
