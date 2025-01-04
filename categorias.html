@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
     <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/videojs-youtube/dist/Youtube.min.js"></script>
     <style>
         body {
             background-color: black;
@@ -136,7 +135,7 @@
             background-color: black;
         }
 
-        .player-container iframe, .video-js {
+        .player-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -167,14 +166,7 @@
 
     <!-- Player -->
     <div class="player-container" id="playerContainer">
-        <video
-            id="videoPlayer"
-            class="video-js vjs-default-skin"
-            controls
-            preload="auto"
-            data-setup='{}'>
-            Seu navegador não suporta o elemento de vídeo.
-        </video>
+        <!-- O iframe será carregado dinamicamente, sem necessidade de usar o player YouTube -->
     </div>
 
     <!-- Container das categorias de canais -->
@@ -244,27 +236,10 @@
 
         // Função para carregar o link no player de vídeo
         function loadChannelInPlayer(channelLink) {
-            const player = videojs('videoPlayer');
-
-            if (channelLink.includes("youtube.com/embed")) {
-                player.src({
-                    type: 'video/youtube',
-                    src: channelLink
-                });
-                player.play();
-            } else if (channelLink.match(/https?:\/\/.*\.(m3u8|mp4|mov|mkv)/)) {
-                player.src({
-                    type: 'application/x-mpegURL',
-                    src: channelLink
-                });
-                player.play();
-            } else {
-                const playerContainer = document.getElementById('playerContainer');
-                player.pause();
-                playerContainer.innerHTML = `
-                    <iframe src="${channelLink}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-                `;
-            }
+            const playerContainer = document.getElementById('playerContainer');
+            playerContainer.innerHTML = `
+                <iframe src="${channelLink}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+            `;
         }
 
         // Carregar os dados do XML quando a página carregar
