@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV - VLC</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- Inclusão do hls.js -->
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-youtube/dist/Youtube.min.js"></script>
     <style>
         body {
             background-color: black;
@@ -124,21 +126,22 @@
             font-weight: bold;
         }
 
-        /* Player style */
+        /* Estilo responsivo para o player */
         .player-container {
-            width: 90%;
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+            padding-top: 56.25%; /* Mantém a proporção 16:9 */
             margin: 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-            padding: 10px;
+            background-color: black;
         }
 
-        .player-container video {
+        .player-container iframe, .video-js {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 500px;
-            background-color: #000;
+            height: 100%;
         }
     </style>
 </head>
@@ -159,12 +162,17 @@
 
     <h1 style="color: orange;">TV - VLC</h1>
     <h1 style="font-size: 18px;">
-      Para garantir o funcionamento correto da TV, é necessário que o usuário tenha o VLC e o navegador Kiwi instalados no celular. O Kiwi permite abrir o link diretamente no VLC, que é responsável por reproduzir os formatos de áudio e vídeo usados por transmissões M3U8.
+        Para garantir o funcionamento correto da TV, é necessário que o usuário tenha o VLC e o navegador Kiwi instalados no celular.
     </h1>
 
-    <!-- Player (localizado acima do menu de canais) -->
+    <!-- Player -->
     <div class="player-container" id="playerContainer">
-        <video id="videoPlayer" controls>
+        <video
+            id="videoPlayer"
+            class="video-js vjs-default-skin"
+            controls
+            preload="auto"
+            data-setup='{}'>
             Seu navegador não suporta o elemento de vídeo.
         </video>
     </div>
@@ -192,26 +200,24 @@
                     const categoriesContainer = document.getElementById('categoriesContainer');
                     categoriesContainer.innerHTML = ''; // Limpar o conteúdo antes de adicionar
 
-                    // Iterar pelas categorias e gerar os botões de canais
                     for (let i = 0; i < categories.length; i++) {
                         const category = categories[i];
                         const categoryName = category.getAttribute('name');
                         const categoryChannels = category.getElementsByTagName('channel');
-                        
+
                         const categoryDiv = document.createElement('div');
                         categoryDiv.className = 'category';
                         categoryDiv.onclick = () => toggleChannels(`channels${i}`);
-                        
+
                         const categoryTitle = document.createElement('h2');
                         categoryTitle.innerText = categoryName;
                         categoryDiv.appendChild(categoryTitle);
-                        
+
                         const channelButtonsDiv = document.createElement('div');
                         channelButtonsDiv.className = 'channel-buttons';
                         channelButtonsDiv.id = `channels${i}`;
                         channelButtonsDiv.style.display = 'none';
 
-                        // Iterar pelos canais e adicionar os botões
                         for (let j = 0; j < categoryChannels.length; j++) {
                             const channel = categoryChannels[j];
                             const channelName = channel.getAttribute('name');
@@ -219,10 +225,7 @@
 
                             const button = document.createElement('button');
                             button.innerText = channelName;
-
-                            // Função para carregar o canal no player
                             button.onclick = () => loadChannelInPlayer(channelLink);
-
                             channelButtonsDiv.appendChild(button);
                         }
 
@@ -241,20 +244,26 @@
 
         // Função para carregar o link no player de vídeo
         function loadChannelInPlayer(channelLink) {
-            const videoPlayer = document.getElementById('videoPlayer');
+            const player = videojs('videoPlayer');
 
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(channelLink); // Carregar o link do canal
-                hls.attachMedia(videoPlayer); // Anexar ao player de vídeo
-                hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    videoPlayer.play(); // Reproduzir o vídeo assim que carregado
+            if (channelLink.includes("youtube.com/embed")) {
+                player.src({
+                    type: 'video/youtube',
+                    src: channelLink
                 });
-            } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-                videoPlayer.src = channelLink; // Para navegadores que suportam M3U8 nativamente (como o Safari)
-                videoPlayer.play();
+                player.play();
+            } else if (channelLink.match(/https?:\/\/.*\.(m3u8|mp4|mov|mkv)/)) {
+                player.src({
+                    type: 'application/x-mpegURL',
+                    src: channelLink
+                });
+                player.play();
             } else {
-                alert('Seu navegador não suporta a reprodução de M3U8 diretamente.');
+                const playerContainer = document.getElementById('playerContainer');
+                player.pause();
+                playerContainer.innerHTML = `
+                    <iframe src="${channelLink}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                `;
             }
         }
 
