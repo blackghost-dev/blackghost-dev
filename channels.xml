@@ -11,12 +11,10 @@
     </category>
     <category name="SBT TV">
         <channel name="SBT SP" url="https://superflixapi.dev/tv/sbt"/>
-        <channel name="SBT HD" url="link"/>
-        <channel name="SBT FHD" url="link"/>
     </category>
     <category name="FILMES">
-        <channel name="BAND SD" url="link"/>
-        <channel name="BAND HD" url="link"/>
+        <channel name="filmes SD" url="link"/>
+        <channel name="filmes HD" url="link"/>
     </category>
     <category name="SÉRIES">
         <channel name="AXN" url="https://superflixapi.dev/tv/axn"/>
@@ -45,7 +43,7 @@
         <channel name="NAT GEO HD" url="link"/>
     </category>
     <category name="TLC">
-        <channel name="TLC SD" url="link"/>
+        <channel name="TESTE" url="http://gol7990.com:80/live/vini105/884512ab/4318.m3u8"/>
         <channel name="TLC HD" url="link"/>
     </category>
     <category name="DISCOVERY CHANNEL">
