@@ -10,7 +10,7 @@
         <channel name="REDETV HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/112235.m3u8"/>
     </category>
     <category name="SBT TV">
-        <channel name="SBT SD" url="http://gol7990.com:80/live/vini105/abcd1234/115555.m3u8"/>
+        <channel name="SBT SP" url="https://www.youtube.com/embed/ABVQXgr2LW4"/>
         <channel name="SBT HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/115556.m3u8"/>
         <channel name="SBT FHD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/115557.m3u8"/>
     </category>
@@ -23,7 +23,7 @@
         <channel name="TV CULTURA HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/117778.m3u8"/>
     </category>
     <category name="DOCUMENTÁRIOS">
-        <channel name="RECORD TV SD" url="http://gol7990.com:80/live/vini105/abcd1234/118888.m3u8"/>
+        <channel name="HISTORY" url="https://superflixapi.dev/tv/history-channel"/>
         <channel name="RECORD TV HD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/118889.m3u8"/>
         <channel name="RECORD TV FHD" url="http://gol7990.com:80/live/njkojwrp/s5wk3dS08U/118890.m3u8"/>
     </category>

@@ -59,16 +59,15 @@
 
         .categories-container {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
             width: 90%;
             margin: 20px auto;
         }
 
         .category {
-            width: 90%;
-            margin: 10px 0;
+            width: 45%;
+            margin: 10px;
             background-color: #222;
             border-radius: 10px;
             padding: 6px 0;
@@ -127,11 +126,13 @@
 
         /* Player style */
         .player-container {
-            width: 80%;
+            width: 90%;
             margin: 20px auto;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #000;
+            padding: 10px;
         }
 
         .player-container video {
@@ -161,13 +162,15 @@
       Para garantir o funcionamento correto da TV, é necessário que o usuário tenha o VLC e o navegador Kiwi instalados no celular. O Kiwi permite abrir o link diretamente no VLC, que é responsável por reproduzir os formatos de áudio e vídeo usados por transmissões M3U8.
     </h1>
 
+    <!-- Player (localizado acima do menu de canais) -->
+    <div class="player-container" id="playerContainer">
+        <video id="videoPlayer" controls>
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+
     <!-- Container das categorias de canais -->
     <div class="categories-container" id="categoriesContainer"></div>
-
-    <!-- Player -->
-    <div class="player-container" id="playerContainer">
-        <!-- O player será carregado aqui com base na seleção do canal -->
-    </div>
 
     <footer>
         <p>COPYRIGHT [2024]<strong class="highlight"> @BLACKGHOST_B</strong> | TODOS OS DIREITOS RESERVADOS.</p>
@@ -217,15 +220,8 @@
                             const button = document.createElement('button');
                             button.innerText = channelName;
 
-                            // Função para abrir o link no VLC
-                            button.onclick = () => {
-                                const vlcUrl = `vlc://${channelLink}`;
-                                try {
-                                    window.location.href = vlcUrl;
-                                } catch (error) {
-                                    alert("Não foi possível abrir o VLC diretamente. Certifique-se de que o VLC está instalado e configurado corretamente.");
-                                }
-                            };
+                            // Função para carregar o canal no player
+                            button.onclick = () => loadChannelInPlayer(channelLink);
 
                             channelButtonsDiv.appendChild(button);
                         }
@@ -241,6 +237,25 @@
         function toggleChannels(id) {
             const channelsDiv = document.getElementById(id);
             channelsDiv.style.display = (channelsDiv.style.display === 'none') ? 'flex' : 'none';
+        }
+
+        // Função para carregar o link no player de vídeo
+        function loadChannelInPlayer(channelLink) {
+            const videoPlayer = document.getElementById('videoPlayer');
+
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(channelLink); // Carregar o link do canal
+                hls.attachMedia(videoPlayer); // Anexar ao player de vídeo
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    videoPlayer.play(); // Reproduzir o vídeo assim que carregado
+                });
+            } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+                videoPlayer.src = channelLink; // Para navegadores que suportam M3U8 nativamente (como o Safari)
+                videoPlayer.play();
+            } else {
+                alert('Seu navegador não suporta a reprodução de M3U8 diretamente.');
+            }
         }
 
         // Carregar os dados do XML quando a página carregar
