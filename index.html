@@ -8,18 +8,51 @@
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             background-color: #000; /* Fundo preto */
             font-family: Arial, sans-serif;
             color: #f7fafc;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+        /* Estilos para a imagem de topo */
+        .top-image {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Estilos para o menu */
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background-color: #333; /* Cor de fundo para o menu */
+            padding: 10px 0;
+            position: relative;
+            z-index: 2;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #f7fafc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #e53e3e;
+        }
+
+        /* Estilos para o conteúdo abaixo da imagem */
         .container {
             animation: fadeIn 2s ease-in-out;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            height: calc(100vh - 100px); /* Ajusta para centralizar considerando o menu e a imagem */
         }
         h1 {
             font-size: 5rem;
@@ -76,14 +109,55 @@
                 transform: translateY(0);
             }
         }
+
+        /* Estilos para o rodapé */
+        .footer {
+            background-color: #333;
+            color: #f7fafc;
+            padding: 10px 0;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* Barra fixa no rodapé, sem animação */
+        .footer-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e53e3e;
+            margin-top: 20px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
+    <!-- Imagem de topo -->
+    <img class="top-image" src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/topo2.png" alt="Imagem de topo">
+
+    <!-- Menu -->
+    <div class="menu">
+        <a href="#">INÍCIO</a>
+        <a href="#">REPOSITÓRIO</a>
+        <a href="#">CONTATO</a>
+    </div>
+
+    <!-- Conteúdo abaixo do menu -->
     <div class="container">
         <h1>404</h1>
         <div class="loading-bar"></div>
         <p>Ops! Página não encontrada.</p>
         <p>Estamos em manutenção, volte mais tarde.</p>
     </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <p>@BLACKGHOST_B - Todos os direitos reservados</p>
+        <!-- Barra fixa no rodapé -->
+        <div class="footer-bar"></div>
+    </div>
+
+    <!-- Animação em JavaScript -->
+    <script>
+        // Você pode adicionar mais animações ou interações em JavaScript aqui, se necessário
+    </script>
 </body>
 </html>
