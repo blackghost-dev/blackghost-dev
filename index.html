@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erro 404 - Página em Manutenção</title>
+    <title>BLACKGHOST-dev</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #000; /* Fundo preto */
+            background-color: #000;
             font-family: Arial, sans-serif;
             color: #f7fafc;
             text-align: center;
@@ -16,101 +16,101 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        /* Estilos para a imagem de topo */
         .top-image {
             width: 100%;
             height: auto;
         }
-
-        /* Estilos para o menu */
         .menu {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            background-color: #333; /* Cor de fundo para o menu */
-            padding: 10px 0;
             position: relative;
-            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
+            height: 30px;
+            overflow: hidden;
         }
-        .menu a {
-            text-decoration: none;
-            color: #f7fafc;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: color 0.3s ease;
+        .scroll-message {
+            position: absolute;
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll 10s linear infinite;
+            color: #00ff00;
+            font-size: 1rem;
         }
-        .menu a:hover {
-            color: #e53e3e;
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
-
-        /* Estilos para o conteúdo abaixo da imagem */
         .container {
-            animation: fadeIn 2s ease-in-out;
             flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             text-align: center;
-            height: calc(100vh - 100px); /* Ajusta para centralizar considerando o menu e a imagem */
+            margin-top: 20px;
         }
         h1 {
             font-size: 5rem;
-            margin: 0;
-            animation: pulse 1.5s infinite;
+            margin: 20px 0;
         }
-        p {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-        .loading-bar {
+        .repo-section {
             position: relative;
-            width: 80%;
-            max-width: 400px;
-            height: 12px; /* Altura da barra aumentada */
-            background: #333;
+            padding: 20px;
+            background-color: #111;
+            color: #f7fafc;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1rem;
+            border-radius: 10px;
+            border: 5px solid black;
+            animation: rgbGlow 2s ease-in-out infinite alternate;
+        }
+        .repo-section .highlight {
+            color: #ff8800;
+            font-weight: bold;
+        }
+        .contact-section {
+            margin-top: 30px;
+        }
+        .contact-section img {
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .contact-section img:hover {
+            transform: scale(1.2);
+        }
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff8800;
+            color: #fff;
+            border: none;
             border-radius: 5px;
-            overflow: hidden;
-            margin: 20px auto 0; /* Espaço acima da barra */
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
         }
-        .loading-bar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 80%; /* Largura do gradiente aumentada */
-            height: 100%;
-            background: linear-gradient(90deg, #e53e3e, #f7fafc, #e53e3e);
-            animation: loading 4s infinite; /* Duração aumentada para 4 segundos */
+        .download-btn:hover {
+            background-color: #ff5722;
         }
-        @keyframes loading {
+        @keyframes rgbGlow {
             0% {
-                transform: translateX(-150%); /* Início maior */
+                box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.7), 0 0 20px 10px rgba(0, 255, 0, 0.7), 0 0 30px 15px rgba(0, 0, 255, 0.7);
             }
             100% {
-                transform: translateX(150%); /* Movimento maior */
+                box-shadow: 0 0 30px 10px rgba(255, 0, 0, 1), 0 0 40px 20px rgba(0, 255, 0, 1), 0 0 50px 25px rgba(0, 0, 255, 1);
             }
         }
-        @keyframes pulse {
-            0%, 100% {
-                color: #f7fafc;
-            }
-            50% {
-                color: #e53e3e;
-            }
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Estilos para o rodapé */
         .footer {
             background-color: #333;
             color: #f7fafc;
@@ -118,8 +118,6 @@
             font-size: 1rem;
             text-align: center;
         }
-
-        /* Barra fixa no rodapé, sem animação */
         .footer-bar {
             width: 100%;
             height: 6px;
@@ -130,34 +128,47 @@
     </style>
 </head>
 <body>
-    <!-- Imagem de topo -->
     <img class="top-image" src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/topo2.png" alt="Imagem de topo">
-
-    <!-- Menu -->
     <div class="menu">
-        <a href="#">INÍCIO</a>
-        <a href="#">REPOSITÓRIO</a>
-        <a href="#">CONTATO</a>
+        <div class="scroll-message">
+            Bem-vindo ao repositório rpblackghost! Aproveite as atualizações frequentes e explore as funcionalidades.
+        </div>
     </div>
-
-    <!-- Conteúdo abaixo do menu -->
     <div class="container">
-        <h1>404</h1>
-        <div class="loading-bar"></div>
-        <p>Ops! Página não encontrada.</p>
-        <p>Estamos em manutenção, volte mais tarde.</p>
+        <h1>REPOSITÓRIO BLACKGHOST</h1>
+        <div class="repo-section">
+            <h2>Versão Atual: <span class="highlight">2.9</span></h2>
+            <p>
+                Instruções para a adição deste repo:
+            </p>
+            <ul>
+                <li>Ir para o Kodi gestor de ficheiros.</li>
+                <li>Clicar em "<span class="highlight">Adicionar fonte</span>".</li>
+                <li>O endereço para a fonte é <code class="highlight">https://rpblackghost.github.io/</code> (Dar o nome de "<span class="highlight">RPBLACKGHOST</span>").</li>
+                <li>Ir para "<span class="highlight">Addons</span>".</li>
+                <li>Em Addons, instalar de um ficheiro zip. Quando perguntar pela localização, selecionar "<span class="highlight">RPBLACKGHOST</span>".</li>
+                <li>Voltar para Addons, mas desta vez, selecionar "<span class="highlight">Instalar do repositório</span>".</li>
+                <li>Selecionar o "<span class="highlight">RPBLACKGHOST REPOSITORY</span>".</li>
+            </ul>
+            <p>
+                <strong class="highlight">!!!Agora o resto fica à vossa escolha!!!</strong>
+            </p>
+            <div style="text-align: center;">
+                <a href="https://raw.githubusercontent.com/rpblackghost/rpblackghost.github.io/main/repository.rpblackghost-2.9.zip" class="download-btn" download>
+                    Baixar Repositório
+                </a>
+            </div>
+        </div>
+        <div id="contact" class="contact-section">
+            <h2>ＴＥＬＥＧＲＡＭ</h2>
+            <a href="https://t.me/BLACKGHOST_B" target="_blank">
+                <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/contato.png" alt="Contato Telegram">
+            </a>
+        </div>
     </div>
-
-    <!-- Rodapé -->
     <div class="footer">
         <p>@BLACKGHOST_B - Todos os direitos reservados</p>
-        <!-- Barra fixa no rodapé -->
         <div class="footer-bar"></div>
     </div>
-
-    <!-- Animação em JavaScript -->
-    <script>
-        // Você pode adicionar mais animações ou interações em JavaScript aqui, se necessário
-    </script>
 </body>
 </html>
