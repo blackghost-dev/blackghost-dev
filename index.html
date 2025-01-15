@@ -3,172 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACKGHOST-dev</title>
+    <meta name="description" content="Bem-vindo ao repositório BLACKGHOST. Instruções detalhadas para adicionar este repositório ao Kodi.">
+    <title>Repositório BLACKGHOST</title>
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
             background-color: #000;
             font-family: Arial, sans-serif;
             color: #f7fafc;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .top-image {
-            width: 100%;
-            height: auto;
-        }
-        .menu {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #333;
-            height: 30px;
             overflow: hidden;
         }
-        .scroll-message {
-            position: absolute;
-            display: inline-block;
-            white-space: nowrap;
-            animation: scroll 10s linear infinite;
-            color: #00ff00;
-            font-size: 1rem;
-        }
-        @keyframes scroll {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-        .container {
-            flex-grow: 1;
+        body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             text-align: center;
-            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .content {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
         }
         h1 {
-            font-size: 5rem;
-            margin: 20px 0;
+            font-size: 2rem;
+            margin-bottom: 20px;
         }
         .repo-section {
-            position: relative;
-            padding: 20px;
             background-color: #111;
             color: #f7fafc;
             text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1rem;
+            padding: 20px;
             border-radius: 10px;
-            border: 5px solid black;
-            animation: rgbGlow 2s ease-in-out infinite alternate;
+            border: 2px solid #333;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            margin-bottom: 20px;
         }
-        .repo-section .highlight {
+        .repo-section ul {
+            padding-left: 20px;
+        }
+        .repo-section li {
+            margin: 10px 0;
+        }
+        .highlight {
             color: #ff8800;
             font-weight: bold;
         }
-        .contact-section {
-            margin-top: 30px;
+        .info-section {
+            background-color: #111;
+            color: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
         }
-        .contact-section img {
-            width: 100px;
-            height: auto;
-            transition: transform 0.3s ease;
-        }
-        .contact-section img:hover {
-            transform: scale(1.2);
-        }
-        .download-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #ff8800;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: inline-block;
-            text-align: center;
+        .info-section a {
+            color: #ff8800;
             text-decoration: none;
         }
-        .download-btn:hover {
-            background-color: #ff5722;
+        .info-section a:hover {
+            text-decoration: underline;
         }
-        @keyframes rgbGlow {
-            0% {
-                box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.7), 0 0 20px 10px rgba(0, 255, 0, 0.7), 0 0 30px 15px rgba(0, 0, 255, 0.7);
-            }
-            100% {
-                box-shadow: 0 0 30px 10px rgba(255, 0, 0, 1), 0 0 40px 20px rgba(0, 255, 0, 1), 0 0 50px 25px rgba(0, 0, 255, 1);
-            }
+        .zip-link {
+            color: #FFC107; /* Amarelo médio */
+            font-weight: bold;
         }
-        .footer {
-            background-color: #333;
-            color: #f7fafc;
-            padding: 10px 0;
-            font-size: 1rem;
-            text-align: center;
+        .zip-link:hover {
+            color: #f7fafc; /* Cor clara ao passar o mouse */
         }
-        .footer-bar {
-            width: 100%;
-            height: 6px;
-            background-color: #e53e3e;
-            margin-top: 20px;
-            border-radius: 3px;
+        .zip-link:active {
+            color: #28a745; /* Verde ao clicar */
         }
     </style>
 </head>
 <body>
-    <img class="top-image" src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/topo2.png" alt="Imagem de topo">
-    <div class="menu">
-        <div class="scroll-message">
-            BEM-VINDO AO REPOSITÓRIO RPBLACKGHOST, APROVEITE AS ATUALIZAÇÕES FREQUENTES E EXPLORE AS FUNCIONALIDADES,  -  OBRIGADO POR ESCOLHER NOSSO PROJETO. ❤️
-        </div>
-    </div>
-    <div class="container">
+    <div class="content">
+        <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/topo2.png" alt="Imagem de topo">
         <h1>REPOSITÓRIO BLACKGHOST</h1>
+        <p><strong>Versão Atual:</strong> <span class="highlight">1.4</span></p>
         <div class="repo-section">
-            <h2>Versão Atual: <span class="highlight">2.9</span></h2>
-            <p>
-                Instruções para a adição deste repo:
-            </p>
+            <h2>Instruções para a adição deste repositório no Kodi:</h2>
             <ul>
                 <li>Ir para o Kodi gestor de ficheiros.</li>
                 <li>Clicar em "<span class="highlight">Adicionar fonte</span>".</li>
-                <li>O endereço para a fonte é <code class="highlight">https://rpblackghost.github.io/</code> (Dar o nome de "<span class="highlight">RPBLACKGHOST</span>").</li>
+                <li>O endereço para a fonte é: <code>https://repoblackghost1.github.io/</code> (Dar o nome de "<span class="highlight">repoblackghost1 Repo</span>").</li>
                 <li>Ir para "<span class="highlight">Addons</span>".</li>
-                <li>Em Addons, instalar de um ficheiro zip. Quando perguntar pela localização, selecionar "<span class="highlight">RPBLACKGHOST</span>".</li>
+                <li>Em Addons, instalar de um ficheiro ZIP. Quando perguntar pela localização, selecionar "<span class="highlight">repoblackghost1 Repo</span>" e instalar: 
+                    <a href="https://repoblackghost1.github.io/repository.repoblackghost1-1.4.zip" target="_blank" class="zip-link">repository.repoblackghost1-1.4.zip</a>.
+                </li>
                 <li>Voltar para Addons, mas desta vez, selecionar "<span class="highlight">Instalar do repositório</span>".</li>
-                <li>Selecionar o "<span class="highlight">RPBLACKGHOST REPOSITORY</span>".</li>
+                <li>Selecionar o "<span class="highlight">repoblackghost1 Repository</span>".</li>
             </ul>
-            <p>
-                <strong class="highlight">!!!Agora o resto fica à vossa escolha!!!</strong>
-            </p>
-            <div style="text-align: center;">
-                <a href="https://raw.githubusercontent.com/rpblackghost/rpblackghost.github.io/main/repository.rpblackghost-2.9.zip" class="download-btn" download>
-                    Baixar Repositório
-                </a>
-            </div>
+            <p>🎉 Agora, é com você! Explore e aproveite o que o repositório tem a oferecer.</p>
         </div>
-        <div id="contact" class="contact-section">
-            <h2>ＴＥＬＥＧＲＡＭ</h2>
-            <a href="https://t.me/BLACKGHOST_B" target="_blank">
-                <img src="https://raw.githubusercontent.com/BLACKSHEEPcolabdev/add-on/refs/heads/master/BLACKGHOST/Imagens/contato.png" alt="Contato Telegram">
-            </a>
+        
+        <!-- Informações Adicionais -->
+        <div class="info-section">
+            <p><strong>Criador:</strong> <a href="https://t.me/BLACKGHOST_B" target="_blank">@BLACKGHOST_B</a></p>
+            <p><strong>Site oficial:</strong> <a href="https://blackghostdev.vercel.app" target="_blank">blackghostdev.vercel.app</a></p>
         </div>
-    </div>
-    <div class="footer">
-        <p>@BLACKGHOST_B - Todos os direitos reservados</p>
-        <div class="footer-bar"></div>
     </div>
 </body>
 </html>
